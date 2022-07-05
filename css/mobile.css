@@ -1,0 +1,104 @@
+@media (max-width: 600px)
+{
+    body
+    {
+        font-size: 0.8em;
+    }
+
+    .contentMenu
+    {
+        width: 70%;
+    }
+
+    .blankMenu
+    {
+        width: 30%;
+    }
+
+    .openBanner
+    {
+        width: 100%;
+    }
+
+    .bannerMod
+    {
+        flex-direction: column;
+    }
+
+    .bannerMod > img
+    {
+        width: 100%;
+    }
+
+    .channels
+    {
+        width: 99%;
+    }
+
+    .channels .linkChannels
+    {
+        width: 100%;
+    }
+
+    .channels .linkChannels img
+    {
+        margin-left: 10%;
+    }
+
+    .channels .linkChannels h4
+    {
+        font-size: 1em;
+    }
+
+    .showHidePass span
+    {
+        top: 20%;
+    }
+
+    .form
+    {
+        width: 90%;
+    }
+
+    span.log
+    {
+        font-size: 1em;
+        margin-top: 20px;
+    }
+
+    .boxProfile
+    {
+        width: 95%;
+    }
+
+    .boxProfile h4
+    {
+        font-size: 2em;
+    }
+
+    .containerMod
+    {
+        width: 90%;
+    }
+
+    #search
+    {        
+        width: 100%;
+    }
+
+    .upProfile h4
+    {
+        margin: 0px auto;
+        font-size: 0.6em;
+    }
+
+    .floatMenu ul li
+    {
+        font-size: 1em;
+    }
+
+    .warn .circle svg
+    {
+        margin-left: 1px;
+    }
+}
