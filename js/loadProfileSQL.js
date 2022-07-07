@@ -14,7 +14,6 @@
                 var data = JSON.parse(window.sessionStorage.getItem('id'))
                 clearInterval(timer)
                 window.sessionStorage.removeItem('id')
-                iframe.parentNode.removeChild(iframe)
                 if(data != 'noLog'){
                     imageMenu.src = data['profile'].replace('../', '')
                     menuProfile.src = data['profile'].replace('../', '')
@@ -26,7 +25,7 @@
                     divFloatMenu.innerHTML = `<li><a href="view/formLogin.php">entrar</a></li>`
                     entrarCadas.innerHTML = '<a href="./view/formLogin.php">Entrar/<wbr>Cadastrar</a>'
                 }
-            }, 100);
+            }, 100)
         }
 
         function sair(){

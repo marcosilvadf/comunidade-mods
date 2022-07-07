@@ -99,4 +99,19 @@ class ModDAO{
             exit;
         }        
     }
+
+    public function listFiveMods()
+    {
+        try {
+            $sql = 'SELECT m.*, u.* FROM tb_mods AS m INNER JOIN tb_user AS u ON m.userId = u.id ORDER BY u.level DESC, m.countDownloads DESC LIMIT 5';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $mods = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $mods;   
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            exit;
+        }        
+    }
 }

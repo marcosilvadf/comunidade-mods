@@ -13,7 +13,7 @@
     <script src="js/loadProfileSQL.js" defer></script>
     <title>Início</title>
 </head>
-<body onload="profile()">
+<body onload="profile(), loadFiveMods()">
     <header>
         <div class="menu">
             <div class="menuIcon" onclick="showMenu()">
@@ -59,20 +59,7 @@
         <h1>mods mais famosos</h1>
         
         <div class="drawerMods">
-            <a href="" class="openBanner">
-                <div class="bannerMod">
-                    <img src="./image/banner-mods.jpg" alt="">
-                    <div class="descMod">
-                        <h2>Mods</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, magnam!</p>
-
-                        <div class="upProfile">
-                            <img src="./image/banner-mods.jpg" alt="">
-                            <h4>vagner tutoriais</h4>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            
         </div>
 
         <a href="./view/allmods.php" class="showAll">Ver todos</a>
@@ -94,7 +81,37 @@
     <div id="nav" style="display: none;"></div>
 
     <script>
-        
+        let drawerMods = document.querySelector('.drawerMods')
+        function loadFiveMods(){
+            navegador.innerHTML += `<iframe src="controller/listFiveMods.php" frameborder="0" id="sqlMods" ></iframe>`
+            let iframe2 = document.querySelector('#sqlMods')
+            iframe2.src = `controller/listFiveMods.php`
+            let timer = setInterval(() => {        
+                var mods = JSON.parse(window.sessionStorage.getItem('fiveMods'))
+                clearInterval(timer)
+                window.sessionStorage.removeItem('fiveMods')
+                iframe2.parentNode.removeChild(iframe2)
+                drawerMods.innerHTML = ''
+                mods.forEach(drawerMod)
+            }, 100)
+        }
+
+        function drawerMod(mod){
+            drawerMods.innerHTML += `<a href="" class="openBanner">
+                                            <div class="bannerMod">
+                                                <img src="${mod['bannerMod'].replace('../', '')}" alt="">
+                                                <div class="descMod">
+                                                    <h2>${mod['titleMod']}</h2>
+                                                    <p>${mod['descMod']}</p>
+
+                                                    <div class="upProfile">
+                                                        <img src="${mod['profile'].replace('../', '')}" alt="">
+                                                        <h4>${mod['name']}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>`
+        }
     </script>
 </body>
 </html>
