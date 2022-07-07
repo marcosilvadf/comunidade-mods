@@ -87,12 +87,14 @@
             let iframe2 = document.querySelector('#sqlMods')
             iframe2.src = `controller/listFiveMods.php`
             let timer = setInterval(() => {        
-                var mods = JSON.parse(window.sessionStorage.getItem('fiveMods'))
-                clearInterval(timer)
-                window.sessionStorage.removeItem('fiveMods')
-                iframe2.parentNode.removeChild(iframe2)
+                var mods = JSON.parse(window.sessionStorage.getItem('fiveMods'))                
+                window.sessionStorage.removeItem('fiveMods')                
                 drawerMods.innerHTML = ''
                 mods.forEach(drawerMod)
+                if(mods != null){
+                    clearInterval(timer)
+                    iframe2.parentNode.removeChild(iframe2)
+                }
             }, 100)
         }
 
