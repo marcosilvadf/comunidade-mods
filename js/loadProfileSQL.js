@@ -16,8 +16,8 @@
                 window.sessionStorage.removeItem('id')
                 iframe.parentNode.removeChild(iframe)
                 if(data != 'noLog'){
-                    imageMenu.src = data['profile']
-                    menuProfile.src = data['profile']
+                    imageMenu.src = data['profile'].replace('../', '')
+                    menuProfile.src = data['profile'].replace('../', '')
                     divFloatMenu.innerHTML += `<li><a href="view/profile.php">perfil</a></li> <li onclick="sair()">sair</li>`
                     entrarCadas.innerHTML = '<a href="./view/profile.php">Perfil</a>'
                 }else{
