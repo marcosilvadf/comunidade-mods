@@ -59,7 +59,37 @@
         <h1>mods mais famosos</h1>
         
         <div class="drawerMods">
-            
+            <?php
+            require_once 'dao/modDAO.php';
+
+            $modDAO = new ModDAO();
+
+            $mods = $modDAO->listFiveMods();
+
+            foreach ($mods as $mod)
+            {
+            $mod['profile'] = substr_replace($mod['profile'], '', 0, 3);
+            $mod['bannerMod'] = substr_replace($mod['bannerMod'], '', 0, 3);
+                ?>
+
+            <a href="" class="openBanner">
+                <div class="bannerMod">
+                    <img src="<?= $mod['bannerMod'] ?>" alt="banner do mod <?= $mod['titleMod'] ?>">
+                        <div class="descMod">
+                            <h2><?= $mod['titleMod'] ?></h2>
+                            <p><?= $mod['descMod'] ?></p>
+
+                            <div class="upProfile">
+                                <img src="<?= $mod['profile'] ?>" alt="foto de perfil do <?= $mod['name'] ?>">
+                                <h4><?= $mod['name'] ?></h4>
+                            </div>
+                        </div>
+                </div>
+            </a>
+
+                <?php
+            }
+            ?>
         </div>
 
         <a href="./view/allmods.php" class="showAll">Ver todos</a>
@@ -81,39 +111,7 @@
     <div id="nav" style="display: none;"></div>
 
     <script>
-        let drawerMods = document.querySelector('.drawerMods')
-        function loadFiveMods(){
-            navegador.innerHTML += `<iframe src="controller/listFiveMods.php" frameborder="0" id="sqlMods" ></iframe>`
-            let iframe2 = document.querySelector('#sqlMods')
-            iframe2.src = `controller/listFiveMods.php`
-            let timer = setInterval(() => {        
-                var mods = JSON.parse(window.sessionStorage.getItem('fiveMods'))                
-                window.sessionStorage.removeItem('fiveMods')                
-                drawerMods.innerHTML = ''
-                mods.forEach(drawerMod)
-                if(mods != null){
-                    clearInterval(timer)
-                    iframe2.parentNode.removeChild(iframe2)
-                }
-            }, 100)
-        }
-
-        function drawerMod(mod){
-            drawerMods.innerHTML += `<a href="" class="openBanner">
-                                            <div class="bannerMod">
-                                                <img src="${mod['bannerMod'].replace('../', '')}" alt="">
-                                                <div class="descMod">
-                                                    <h2>${mod['titleMod']}</h2>
-                                                    <p>${mod['descMod']}</p>
-
-                                                    <div class="upProfile">
-                                                        <img src="${mod['profile'].replace('../', '')}" alt="">
-                                                        <h4>${mod['name']}</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>`
-        }
+        
     </script>
 </body>
 </html>

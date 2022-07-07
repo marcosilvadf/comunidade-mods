@@ -480,6 +480,7 @@ div.line
 
 .login img
 {
+    cursor: pointer;
     transition: .4s;
 }
 
