@@ -101,4 +101,15 @@
     {
         margin-left: 1px;
     }
+
+    .modal.active div
+    {
+        width: 90%;
+    }
+
+    #pencil
+    {        
+        width: 30px;
+        height: 30px;
+    }
 }

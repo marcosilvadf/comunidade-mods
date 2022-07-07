@@ -83,9 +83,9 @@ if(empty($_COOKIE['idmods']))
                     <option value="veiculo">Veículo</option>
                 </select>
 
-                <input type="text" name="video" id="titulo" placeholder="Link do vídeo:">
+                <input type="text" name="video" id="video" placeholder="Link do vídeo:">
 
-                <input type="text" name="download" id="titulo" placeholder="Link de download:">
+                <input type="text" name="download" id="down" placeholder="Link de download:">
         
                 <input type="submit" value="enviar">
             </form>

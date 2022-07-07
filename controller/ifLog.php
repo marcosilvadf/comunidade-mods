@@ -6,7 +6,7 @@ $userDAO = new UserDAO();
 if(!empty($_COOKIE['idmods']) && is_numeric($_COOKIE['idmods']))
 {
     $user = $userDAO->findById($_COOKIE['idmods']);
-    $user['registrationDate'] = date('d/m/Y H:i', strtotime($user['registrationDate']));
+    $user['registrationDate'] = date('d/m/Y', strtotime($user['registrationDate']));
     $user = json_encode($user);
 }else
 {

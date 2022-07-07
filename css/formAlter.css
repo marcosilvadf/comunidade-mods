@@ -1,0 +1,99 @@
+.modal div
+{
+    overflow-y: auto;
+}
+
+.modal div img
+{
+    z-index: -1000;
+}
+
+.modal div form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal div form input, .modal div form textarea, .modal div form select
+{
+    background: none;
+    color: white;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    margin: 10px 0px;
+    width: 95%;
+}
+
+.modal div form input::placeholder, .modal div form textarea::placeholder, .modal div form select::placeholder
+{
+    color: white;
+}
+
+.modal div form textarea
+{
+    border: 1px solid white;
+    height: 100px;
+    resize: none;
+}
+
+.modal div form select option
+{
+    background-color: #fc4a1a;
+}
+
+.modal div form input[type="submit"], #closeModal
+{
+    border: 1px solid white;
+    width: 35%;
+    height: 40px;
+    text-transform: uppercase;
+}
+
+.modal div form input[type="submit"]
+{
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#closeModal
+{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fc4a1a;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#tam
+{
+    margin-top: 10px;
+    background: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#tTam
+{
+    width: 30%;
+}
+
+#nTam, #typeMod
+{
+    text-align: center;
+    width: 30%;
+}
+
+div.linha
+{
+    background: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

@@ -488,3 +488,11 @@ div.line
     transform: translateX(100px);
     transition: .4s;
 }
+
+.drawerMods
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

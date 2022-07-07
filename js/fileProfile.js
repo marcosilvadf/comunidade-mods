@@ -39,5 +39,5 @@ file.addEventListener('change', function()
         }, 100);
     }
 
-    reader.readAsDataURL(file.files[0])    
+    reader.readAsDataURL(file.files[0])
 })

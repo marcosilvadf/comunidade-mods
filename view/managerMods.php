@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/formAlter.css">
     <link rel="stylesheet" href="../css/mobile.css">
     <link rel="stylesheet" href="../lib/fontawesome/css/all.min.css">
     <script src="../lib/fontawesome/js/all.min.js"></script>
     <script src="../js/menu.js" defer></script>   
     <script src="../js/menuFloat.js" defer></script>
     <script src="../js/loadProfileSQLView.js" defer></script>
+    <script src="../js/fileImageMod.js" defer></script>
     <title>Gerenciar Mods</title>
 </head>
 <body onload="listAllMods(), profile()">
@@ -64,6 +66,55 @@
         <div class="addMod" onclick="listAllMods()" style="left: 20px;">
         <i class="fa-solid fa-rotate-right"></i>
         </div>
+
+        <div class="modal">
+            <div>
+            <img src="../image/banner-mods.jpg" alt="" id="imgMod" class="banner">
+                <form action="../controller/alterModController.php" method="post" enctype="multipart/form-data">                    
+                        <label for="modImage">
+                            <div id="pencil" class="modImage">
+                                <i class="fa-solid fa-pen"></i>
+                            <span style="display: none;"></span>
+                            </div>
+                        </label>                    
+
+                    <input type="hidden" name="modId" id="modId">
+
+                    <input type="file" name="modImage" id="modImage" style="display: none;">
+
+                    <input type="text" name="titulo" id="titulo" placeholder="Título:">
+
+                    <textarea name="descMod" id="descMod" cols="30" rows="10" placeholder="Descrição do mod:"></textarea>
+
+                    <label for="nTam" id="lTam">Tamanho:</label>
+                    <div id="tam">
+                    <input type="number" name="nTam" id="nTam" placeholder="Tamanho:">
+                    <select name="tTam" id="tTam">
+                        <option value="kb">KB</option>
+                        <option value="mb" selected>MB</option>
+                        <option value="gb">GB</option>
+                    </select>
+                    </div>
+
+                    <label for="typeMod" id="typeModLabel">Tipo:</label>
+                    <select name="typeMod" id="typeMod">
+                        <option value="cleo">Cleo</option>
+                        <option value="grafico">Gráfico</option>
+                        <option value="gta">GTA</option>
+                        <option value="veiculo">Veículo</option>
+                    </select>
+
+                    <input type="text" name="video" id="video" placeholder="Link do vídeo:">
+
+                    <input type="text" name="download" id="down" placeholder="Link de download:">
+
+                    <div class="linha">
+                        <input type="submit" value="salvar">
+                        <span id="closeModal" onclick="closeModal()">fechar</span>
+                    </div>                    
+                </form>                
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -75,6 +126,7 @@
         let navegadorMods = document.querySelector('#nav1')
         let containerMods = document.querySelector('#containerMods')
         let rotate = document.querySelectorAll('.addMod')
+        let modal = document.querySelector('.modal')
         let rotation = 0
 
         function listAllMods() {
@@ -102,13 +154,52 @@
         }
 
         function printMods(mod) {
-            containerMods.innerHTML += `<div class="containerMod" id="${mod['modId']}">
+            containerMods.innerHTML += `<div class="containerMod" onclick="openModal(${mod['modId']})">
                                             <img src="${mod['bannerMod']}" alt="">
                                             <div class="boxInfos">
                                                 <span class="title">${mod['titleMod']}</span>
                                                 <span class="downloads">Downloads: <span class="qtd">${mod['countDownloads']}</span></span>
                                             </div>
                                         </div>`
+        }
+
+        function openModal(id){
+            document.documentElement.style.overflowY = 'hidden'
+            let imgMod = document.querySelector('#imgMod')
+            let container = document.querySelector('.modal div')
+            let modId = document.querySelector('#modId')
+            let titulo = document.querySelector('#titulo')
+            let descMod = document.querySelector('#descMod')
+            let nTam = document.querySelector('#nTam')
+            let tTam = document.querySelector('#tTam')
+            let typeMod = document.querySelector('#typeMod')
+            let video = document.querySelector('#video')
+            let down = document.querySelector('#down')
+            navegadorMods.innerHTML += `<iframe src="../controller/getModById.php?modid=${id}" frameborder="0" id="sql" ></iframe>`
+            let iframe = document.querySelector('#sql')
+            iframe.src = `../controller/getModById.php?modid=${id}`
+            let timer = setInterval(() => {
+                var mod = JSON.parse(window.sessionStorage.getItem('getModId'))
+                modId.value = mod['modId']
+                titulo.value = mod['titleMod']
+                descMod.value = mod['descMod']
+                nTam.value = parseFloat(mod['sizeMod'])
+                tTam.value = mod['sizeMod'].replace(parseFloat(mod['sizeMod']), "")
+                typeMod.value = mod['typeMod']
+                video.value = mod['youtubeMod']
+                down.value = mod['downloadMod']
+                modal.classList.add('active')
+                imgMod.src = mod['bannerMod']
+                clearInterval(timer)
+                iframe.parentNode.removeChild(iframe)
+                window.sessionStorage.removeItem('getModId')
+            }, 100)
+        }
+
+        function closeModal(){
+            document.documentElement.style.overflowY = 'auto'
+            let closeModal = document.querySelector('#closeModal')
+            modal.classList.remove('active')
         }
     </script>
 </body>

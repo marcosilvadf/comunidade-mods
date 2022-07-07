@@ -32,6 +32,29 @@ class ModDAO{
         }
     }
 
+    public function alterMod(ModDTO $modDTO)
+    {
+        try {
+            $this->pdo->beginTransaction();
+            $sql = 'UPDATE tb_mods SET titleMod = ?, bannerMod = ?, descMod = ?, sizeMod = ?, youtubeMod = ?, downloadMod = ?, typeMod = ? WHERE modId = ?';
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $modDTO->getTitle());
+            $stmt->bindValue(2, $modDTO->getBanner());
+            $stmt->bindValue(3, $modDTO->getDesc());
+            $stmt->bindValue(4, $modDTO->getSize());
+            $stmt->bindValue(5, $modDTO->getYt());
+            $stmt->bindValue(6, $modDTO->getDown());
+            $stmt->bindValue(7, $modDTO->getType());
+            $stmt->bindValue(8, $modDTO->getId());
+            $stmt->execute();           
+            return $this->pdo->commit();
+        } catch (PDOException $e)
+        {
+            $this->pdo->rollBack();
+            return $e->getMessage();
+        }
+    }
+
     public function listAll()
     {
         try {
@@ -50,11 +73,26 @@ class ModDAO{
     public function listModsById($id)
     {
         try {
-            $sql = "SELECT * FROM tb_mods WHERE userId = '$id'";
+            $sql = "SELECT * FROM tb_mods WHERE userId = '$id' ORDER BY modId DESC";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $mods = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $mods;   
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            exit;
+        }        
+    }
+
+    public function getModById($id)
+    {
+        try {
+            $sql = "SELECT * FROM tb_mods WHERE modId = '$id'";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $mod = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $mod;   
         } catch(PDOException $e)
         {
             echo $e->getMessage();
