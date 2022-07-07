@@ -13,7 +13,7 @@
     <script src="js/loadProfileSQL.js" defer></script>
     <title>Início</title>
 </head>
-<body onload="profile(), loadFiveMods()">
+<body onload="profile()">
     <header>
         <div class="menu">
             <div class="menuIcon" onclick="showMenu()">

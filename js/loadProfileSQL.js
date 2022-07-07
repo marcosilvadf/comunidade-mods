@@ -25,6 +25,7 @@
                     divFloatMenu.innerHTML = `<li><a href="view/formLogin.php">entrar</a></li>`
                     entrarCadas.innerHTML = '<a href="./view/formLogin.php">Entrar/<wbr>Cadastrar</a>'
                 }
+            loadFiveMods()
             }, 100)
         }
 
