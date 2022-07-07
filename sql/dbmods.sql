@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Jul-2022 às 00:22
+-- Tempo de geração: 07-Jul-2022 às 22:17
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -59,8 +59,10 @@ CREATE TABLE `tb_mods` (
 --
 
 INSERT INTO `tb_mods` (`modId`, `titleMod`, `bannerMod`, `descMod`, `sizeMod`, `youtubeMod`, `downloadMod`, `typeMod`, `countDownloads`, `registrationDate`, `userId`) VALUES
-(5, 'Pai de nave', '../image/banner/62c4518a25614.jpg', 'Essa live foi incrível', '5kb', 'youtube', 'mediafire', 'gta', 0, '2022-07-05 11:58:18', 1),
-(8, 'Moto r6', '../image/banner/62c45c11d3606.jpg', 'esse dia foi mai louco ainda!!', '3gb', 'youtubeee', 'mediafireeee', 'cleo', 0, '2022-07-05 12:43:13', 1);
+(5, 'motinhaa', '../image/banner/62c6154087225.jpg', 'essa moto é incrível, mas eu perdi ela', '444kb', 'só n o yt', 'nem teim', 'gta', 331, '2022-07-05 11:58:18', 1),
+(8, 'Moto r6', '../image/banner/62c45c11d3606.jpg', 'esse dia foi mai louco ainda!!', '3kb', 'youtubeee', 'mediafireeee', 'cleo', 0, '2022-07-05 12:43:13', 1),
+(10, 'BANIDO', '../image/banner/62c615fc17a89.jpg', 'eitaaaaaa, nunca mais jogo nesse server ._.', '1kb', 'aqui é o link do vídeo', 'aqui é o link de download', 'gta', 500, '2022-07-06 18:15:28', 1),
+(11, 'F rapaziada', '../image/banner/62c616c3f1e05.png', 'isso foi covardia', '350gb', 'nem precisa', 'tambem não precisa', 'grafico', 0, '2022-07-06 20:12:03', 2);
 
 -- --------------------------------------------------------
 
@@ -83,8 +85,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `name`, `profile`, `password`, `recovery`, `level`, `registrationDate`) VALUES
-(1, 'maior', '../image/profile/62c43f1ee4c90.jpg', 'b95c988b121e7433c4da81c76b90a79b', 'maior', '1', '2022-07-05 10:39:42'),
-(2, 'maiorzin', '../image/profile/62c471e2a7ebe.jpg', '14c879f3f5d8ed93a09f6090d77c2cc3', '3434', '1', '2022-07-05 14:16:18');
+(1, 'maior', '../image/profile/62c43f1ee4c90.jpg', 'b95c988b121e7433c4da81c76b90a79b', 'maior', '4', '2022-07-05 10:39:42'),
+(2, 'maiorzin', '../image/profile/62c471e2a7ebe.jpg', '14c879f3f5d8ed93a09f6090d77c2cc3', '3434', '3', '2022-07-05 14:16:18');
 
 --
 -- Índices para tabelas despejadas
@@ -118,7 +120,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT de tabela `tb_mods`
 --
 ALTER TABLE `tb_mods`
-  MODIFY `modId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `modId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `tb_user`
