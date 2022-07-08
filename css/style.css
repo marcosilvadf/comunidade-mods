@@ -571,10 +571,6 @@ div.line
     list-style-type: none;
 }
 
-#modal.active > div .descMod ul li
-{
-}
-
 #modal.active > div .descMod ul li a
 {
     color: white;
