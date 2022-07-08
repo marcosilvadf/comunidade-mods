@@ -57,24 +57,85 @@
             <button><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
 
-        <a href="viewMod.php" class="openBanner">
-            <div class="bannerMod">
-                <img src="../image/banner-mods.jpg" alt="">
-                <div class="descMod">
-                    <h2>Mods</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, magnam!</p>
-                </div>
+        <div id="modal">
+                
+        </div>
 
-                <div class="upProfile">
-                    <img src="../image/banner-mods.jpg" alt="">
-                    <h4>vagner tutoriais</h4>
-                </div>
+        <?php
+            require_once '../dao/modDAO.php';
 
+            $modDAO = new ModDAO();
+
+            $mods = $modDAO->listFiveMods();
+
+            foreach ($mods as $mod)
+            {
+                ?>
+
+            <div class="openBanner" onclick="modalDescMod(<?= $mod['modId'] ?>)">
+                <div class="bannerMod">
+                    <img src="<?= $mod['bannerMod'] ?>" alt="banner do mod <?= $mod['titleMod'] ?>">
+                        <div class="descMod">
+                            <h2><?= $mod['titleMod'] ?></h2>
+                            <p><?= $mod['descMod'] ?></p>
+
+                            <div class="upProfile">
+                                <img src="<?= $mod['profile'] ?>" alt="foto de perfil do <?= $mod['name'] ?>">
+                                <h4><?= $mod['name'] ?></h4>
+                            </div>
+                        </div>
+                </div>
             </div>
-        </a>
+
+                <?php
+            }
+            ?>
+
     </main>
 
     <footer></footer>
     <div id="nav" style="display: none;"></div>
+
+    <script>
+        let modal = document.querySelector('#modal')
+
+        function modalDescMod(modId){
+            document.documentElement.style.overflowY = 'hidden'
+            modal.classList.add('active')
+            navegador.innerHTML += `<iframe src="../controller/getModById.php?modid=${modId}" frameborder="0" id="sql" ></iframe>`
+            let iframe = document.querySelector('#sql')
+            iframe.src = `../controller/getModById.php?modid=${modId}`
+
+            let timer = setInterval(() => {
+                var mod = JSON.parse(window.sessionStorage.getItem('getModId'))
+                clearInterval(timer)
+                window.sessionStorage.removeItem('getModId')
+                iframe.parentNode.removeChild(iframe)
+                modal.innerHTML = `<div>
+                                        <img src="${mod['bannerMod']}" alt="banner do mod ${mod['titleMod']}">
+                                            <div class="descMod">
+                                                <h2>${mod['titleMod']}</h2>
+                                                <p>${mod['descMod']}</p>
+
+                                                <div class="upProfile">
+                                                    <img src="${mod['profile']}" alt="foto de perfil do ${mod['name']}">
+                                                    <h4>${mod['name']}</h4>
+                                                </div>
+
+                                                <ul>
+                                                    <li>Tamanho: ${mod['sizeMod']}</li>
+                                                    <li>Tipo: ${mod['typeMod']}</li>
+                                                    <li>Postado em: ${mod['registrationDate']}</li>
+                                                    <li>Downloads: ${mod['countDownloads']}</li>
+                                                    <li><a href="${mod['youtubeMod']}" target="_blank">Ver vídeo</a></li>
+                                                    <li><a href="${mod['downloadMod']}" target="_blank">Baixar</a></li>
+                                                </ul>
+                                            </div>
+
+                                        <button onclick="modal.classList.remove('active'), document.documentElement.style.overflowY = 'auto'">fechar</button>
+                                    </div>`
+            }, 100)
+        }
+    </script>
 </body>
 </html>

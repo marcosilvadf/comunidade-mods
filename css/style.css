@@ -527,6 +527,12 @@ div.line
     position: absolute;
     bottom: 60px;
     right: 20px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 2px;
+    padding: 10px;
+    background-color: #fc4a1a;
+    border: 1px solid white;
 }
 
 #modal.active
