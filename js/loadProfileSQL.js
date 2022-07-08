@@ -14,6 +14,7 @@
                 var data = JSON.parse(window.sessionStorage.getItem('id'))
                 clearInterval(timer)
                 window.sessionStorage.removeItem('id')
+                iframe.parentNode.removeChild(iframe)
                 if(data != 'noLog'){
                     imageMenu.src = data['profile'].replace('../', '')
                     menuProfile.src = data['profile'].replace('../', '')

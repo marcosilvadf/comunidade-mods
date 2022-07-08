@@ -59,6 +59,12 @@
         <h1>mods mais famosos</h1>
         
         <div class="drawerMods">
+            <div id="modal">
+                <div>
+                    <button onclick="modal.classList.remove('active'), document.documentElement.style.overflowY = 'auto'">fechar</button>
+                </div>
+            </div>
+
             <?php
             require_once 'dao/modDAO.php';
 
@@ -72,7 +78,7 @@
             $mod['bannerMod'] = substr_replace($mod['bannerMod'], '', 0, 3);
                 ?>
 
-            <a href="" class="openBanner">
+            <div class="openBanner" onclick="modalDescMod(<?= $mod['modId'] ?>)">
                 <div class="bannerMod">
                     <img src="<?= $mod['bannerMod'] ?>" alt="banner do mod <?= $mod['titleMod'] ?>">
                         <div class="descMod">
@@ -85,7 +91,7 @@
                             </div>
                         </div>
                 </div>
-            </a>
+            </div>
 
                 <?php
             }
@@ -111,7 +117,23 @@
     <div id="nav" style="display: none;"></div>
 
     <script>
-        
+        let modal = document.querySelector('#modal')
+
+        function modalDescMod(modId){
+            document.documentElement.style.overflowY = 'hidden'
+            modal.classList.add('active')
+            navegador.innerHTML += `<iframe src="../controller/getModById.php?modid=${modId}" frameborder="0" id="sql" ></iframe>`
+            let iframe = document.querySelector('#sql')
+            iframe.src = `../controller/getModById.php?modid=${modId}`
+
+            let timer = setInterval(() => {
+                var mod = JSON.parse(window.sessionStorage.getItem('getModId'))
+                clearInterval(timer)
+                window.sessionStorage.removeItem('id')
+                iframe.parentNode.removeChild(iframe)
+                console.log(mod)
+            }, 100)
+        }
     </script>
 </body>
 </html>

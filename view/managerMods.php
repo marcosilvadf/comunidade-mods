@@ -70,7 +70,7 @@
         <div class="modal">
             <div>
             <img src="../image/banner-mods.jpg" alt="" id="imgMod" class="banner">
-                <form action="../controller/alterModController.php" method="post" enctype="multipart/form-data">                    
+                <form action="../controller/alterModController.php" method="post" enctype="multipart/form-data" autocomplete="off">                    
                         <label for="modImage">
                             <div id="pencil" class="modImage">
                                 <i class="fa-solid fa-pen"></i>

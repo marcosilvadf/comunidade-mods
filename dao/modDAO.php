@@ -88,7 +88,7 @@ class ModDAO{
     public function getModById($id)
     {
         try {
-            $sql = "SELECT * FROM tb_mods WHERE modId = '$id'";
+            $sql = "SELECT u.*, m.* FROM tb_mods AS m INNER JOIN tb_user AS u ON u.id = m.userId WHERE modId = '$id'";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $mod = $stmt->fetch(PDO::FETCH_ASSOC);
