@@ -66,7 +66,7 @@
 
             $modDAO = new ModDAO();
 
-            $mods = $modDAO->listFiveMods();
+            $mods = $modDAO->listAll();
 
             foreach ($mods as $mod)
             {

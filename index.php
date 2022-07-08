@@ -56,6 +56,17 @@
             <button><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
 
+        <h1>principais canais</h1>
+
+        <div class="channels">
+            
+            <a href="" class="linkChannels">
+                <img src="image/banner-mods.jpg" alt="">
+                <h4>vagner tutoriais</h4>
+            </a>
+            
+        </div>
+
         <h1>mods mais famosos</h1>
         
         <div class="drawerMods">
@@ -96,18 +107,7 @@
             ?>
         </div>
 
-        <a href="./view/allmods.php" class="showAll">Ver todos</a>
-
-        <h1>principais canais</h1>
-
-        <div class="channels">
-            
-            <a href="" class="linkChannels">
-                <img src="./image/banner-mods.jpg" alt="">
-                <h4>vagner tutoriais</h4>
-            </a>
-            
-        </div>
+        <a href="./view/allmods.php" class="showAll">Ver todos</a>        
     </main>
 
     <footer></footer>

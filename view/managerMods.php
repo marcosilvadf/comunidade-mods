@@ -70,13 +70,13 @@
         <div class="modal">
             <div>
             <img src="../image/banner-mods.jpg" alt="" id="imgMod" class="banner">
-                <form action="../controller/alterModController.php" method="post" enctype="multipart/form-data" autocomplete="off">                    
+                <form action="../controller/alterModController.php" method="post" enctype="multipart/form-data" autocomplete="off" id="form">                    
                         <label for="modImage">
                             <div id="pencil" class="modImage">
                                 <i class="fa-solid fa-pen"></i>
                             <span style="display: none;"></span>
                             </div>
-                        </label>                    
+                        </label>                        
 
                     <input type="hidden" name="modId" id="modId">
 
@@ -127,6 +127,7 @@
         let containerMods = document.querySelector('#containerMods')
         let rotate = document.querySelectorAll('.addMod')
         let modal = document.querySelector('.modal')
+        let form = document.querySelector('#form')
         let rotation = 0
 
         function listAllMods() {
@@ -148,7 +149,7 @@
                     containerMods.innerHTML += `<span style='align-self: center; margin: 0px auto;'>vazio... igual a carteiro do Maiorzin</span>`
                 }
                 clearInterval(timer)
-                iframe.parentNode.removeChild(iframe)                
+                iframe.parentNode.removeChild(iframe)
                 window.sessionStorage.removeItem('id')
             }, 350)
         }
@@ -187,9 +188,13 @@
                 tTam.value = mod['sizeMod'].replace(parseFloat(mod['sizeMod']), "")
                 typeMod.value = mod['typeMod']
                 video.value = mod['youtubeMod']
+                form.innerHTML += `<div id="delete" style="left: 20px;" onclick="dropMod(${mod['modId']})">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </div>`
                 down.value = mod['downloadMod']
                 modal.classList.add('active')
                 imgMod.src = mod['bannerMod']
+                
                 clearInterval(timer)
                 iframe.parentNode.removeChild(iframe)
                 window.sessionStorage.removeItem('getModId')
@@ -197,9 +202,17 @@
         }
 
         function closeModal(){
+            let drop = document.querySelector('#delete')
             document.documentElement.style.overflowY = 'auto'
             let closeModal = document.querySelector('#closeModal')
             modal.classList.remove('active')
+            drop.parentNode.removeChild(drop)
+        }
+
+        function dropMod(modId){
+            if(confirm('Tem certeza que deseja apagar esse mod?')){
+                window.location.href = `../controller/deleteModById.php?modId=${modId}`
+            }
         }
     </script>
 </body>

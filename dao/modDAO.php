@@ -58,7 +58,7 @@ class ModDAO{
     public function listAll()
     {
         try {
-            $sql = 'SELECT * FROM tb_mods';
+            $sql = 'SELECT m.*, u.* FROM tb_mods AS m INNER JOIN tb_user AS u ON m.userId = u.id ORDER BY u.level DESC, m.countDownloads DESC';
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $mods = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -112,6 +112,18 @@ class ModDAO{
         {
             echo $e->getMessage();
             exit;
+        }        
+    }
+
+    public function deleteModById($id)
+    {
+        try {
+            $sql = "DELETE FROM tb_mods WHERE modId = $id";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute();   
+        } catch(PDOException $e)
+        {
+            return false;
         }        
     }
 }
