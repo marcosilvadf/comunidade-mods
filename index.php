@@ -60,9 +60,7 @@
         
         <div class="drawerMods">
             <div id="modal">
-                <div>
-                    <button onclick="modal.classList.remove('active'), document.documentElement.style.overflowY = 'auto'">fechar</button>
-                </div>
+                
             </div>
 
             <?php
@@ -129,9 +127,31 @@
             let timer = setInterval(() => {
                 var mod = JSON.parse(window.sessionStorage.getItem('getModId'))
                 clearInterval(timer)
-                window.sessionStorage.removeItem('id')
+                window.sessionStorage.removeItem('getModId')
                 iframe.parentNode.removeChild(iframe)
-                console.log(mod)
+                modal.innerHTML = `<div>
+                                        <img src="${mod['bannerMod'].replace('../', '')}" alt="banner do mod ${mod['titleMod']}">
+                                            <div class="descMod">
+                                                <h2>${mod['titleMod']}</h2>
+                                                <p>${mod['descMod']}</p>
+
+                                                <div class="upProfile">
+                                                    <img src="${mod['profile'].replace('../', '')}" alt="foto de perfil do ${mod['name']}">
+                                                    <h4>${mod['name']}</h4>
+                                                </div>
+
+                                                <ul>
+                                                    <li>Tamanho: ${mod['sizeMod']}</li>
+                                                    <li>Tipo: ${mod['typeMod']}</li>
+                                                    <li>Postado em: ${mod['registrationDate']}</li>
+                                                    <li>Downloads: ${mod['countDownloads']}</li>
+                                                    <li><a href="${mod['youtubeMod']}" target="_blank">Ver vídeo</a></li>
+                                                    <li><a href="${mod['downloadMod']}" target="_blank">Baixar</a></li>
+                                                </ul>
+                                            </div>
+
+                                        <button onclick="modal.classList.remove('active'), document.documentElement.style.overflowY = 'auto'">fechar</button>
+                                    </div>`
             }, 100)
         }
     </script>

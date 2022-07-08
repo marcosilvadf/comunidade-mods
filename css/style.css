@@ -380,7 +380,7 @@ div.line
     align-items: center;
 }
 
-.upProfile img, .menuFloat
+.upProfile img, .menuFloat, #modal.active > div .descMod img
 {
     width: 25px;
     height: 25px;
@@ -543,6 +543,40 @@ div.line
 {
     width: 95%;
     height: 95%;
-    transition: .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: .5s;
     transition-delay: .1s;
+}
+
+#modal.active > div img
+{
+    width: 100%;
+}
+
+#modal.active > div .descMod
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 95%;
+}
+
+#modal.active > div .descMod ul
+{
+    position: absolute;
+    bottom: 100px;
+    padding-inline-start: 0px;
+    list-style-type: none;
+}
+
+#modal.active > div .descMod ul li
+{
+}
+
+#modal.active > div .descMod ul li a
+{
+    color: white;
+    margin-bottom: 10px;
 }
