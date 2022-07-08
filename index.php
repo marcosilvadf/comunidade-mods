@@ -120,9 +120,9 @@
         function modalDescMod(modId){
             document.documentElement.style.overflowY = 'hidden'
             modal.classList.add('active')
-            navegador.innerHTML += `<iframe src="../controller/getModById.php?modid=${modId}" frameborder="0" id="sql" ></iframe>`
+            navegador.innerHTML += `<iframe src="controller/getModById.php?modid=${modId}" frameborder="0" id="sql" ></iframe>`
             let iframe = document.querySelector('#sql')
-            iframe.src = `../controller/getModById.php?modid=${modId}`
+            iframe.src = `controller/getModById.php?modid=${modId}`
 
             let timer = setInterval(() => {
                 var mod = JSON.parse(window.sessionStorage.getItem('getModId'))
