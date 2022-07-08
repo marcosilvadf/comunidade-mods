@@ -520,6 +520,7 @@ div.line
     background-image: linear-gradient(#fc4a1a, #ff7b00);
     width: 0%;
     height: 0%;
+    z-index: 100;
     overflow: hidden;
     transition: .3s;
 }
