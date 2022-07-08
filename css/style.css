@@ -512,6 +512,7 @@ div.line
     background-color: rgba(0, 0, 0, 0);
     z-index: -10;
     transition: .3s;
+    transition-delay: .2s;
 }
 
 #modal > div
@@ -522,7 +523,7 @@ div.line
     height: 0%;
     z-index: 100;
     overflow: hidden;
-    transition: .3s;
+    transition: .2s;
 }
 
 #modal > div button
