@@ -36,34 +36,43 @@
     </div>
 
     <main>
+
+    <?php
+    require_once '../dao/modDAO.php';
+
+    $modId = $_GET['modId'];
+
+    $modDAO = new ModDAO();
+
+    $mod = $modDAO->getModById($modId);
+    
+    ?>
         <div class="bannerMod">
-            <img src="../image/banner-mods.jpg" alt="">
+            <img src="<?= $mod['bannerMod']?>" alt="">
             <div class="descMod">
-                <h2>Mods</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, magnam!</p>
-                <div class="list">
-                    <ul>
-                        <li>Downloads: </li>
-                        <li>Publicação: </li>
-                    </ul>
-                </div>
+                <h2><?= $mod['titleMod']?></h2>
+                <p><?= $mod['descMod']?></p>
 
                 <div class="upProfile" style="margin-bottom: 10px;">
-                    <img src="../image/banner-mods.jpg" alt="">
-                    <h4>vagner tutoriais</h4>
+                    <img src="<?= $mod['profile']?>" alt="">
+                    <h4><?= $mod['name']?></h4>
                 </div>
 
+                <div class="list">
+                    <ul>
+                        <li>Downloads: <?= $mod['countDownloads']?></li>
+                        <li>Postado: <?= date('d/m/Y', strtotime($mod['registrationDate']))?></li>
+                        <li>Tamanho: <?= strtoupper($mod['sizeMod'])?></li>
+                        <li>Tipo: <?= ucfirst($mod['typeMod'])?></li>
+                    </ul>
+                </div>                        
+
                 <div class="line">
-                    <a href="https://www.youtube.com/" target="_blank">Ver vídeo</a>
-                    <a href="https://www.mediafire.com/" target="_blank">Baixar</a>
+                    <a href="<?= $mod['youtubeMod']?>" target="_blank">Ver vídeo</a>
+                    <a href="<?= $mod['downloadMod']?>" target="_blank">Baixar</a>
                 </div>            
             </div>
-        </div>
-
-        <div class="comments">
-            <h2>Comentários</h2>
-            <iframe src="../view/comments.php" frameborder="0"></iframe>
-        </div>
+        </div>        
     </main>
 
     <footer></footer>    

@@ -51,10 +51,6 @@
     </div>
 
     <main>
-        <form action="" id="search">
-            <input type="text" name="" id="" placeholder="Pesquisar">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
 
         <h1>principais canais</h1>
 
@@ -132,8 +128,7 @@
                 modal.innerHTML = `<div>
                                         <img src="${mod['bannerMod'].replace('../', '')}" alt="banner do mod ${mod['titleMod']}">
                                             <div class="descMod">
-                                                <h2>${mod['titleMod']}</h2>
-                                                <p>${mod['descMod']}</p>
+                                                <h2>${mod['titleMod']}</h2>                                                
 
                                                 <div class="upProfile">
                                                     <img src="${mod['profile'].replace('../', '')}" alt="foto de perfil do ${mod['name']}">
@@ -141,16 +136,17 @@
                                                 </div>
 
                                                 <ul>
+                                                    <li>Downloads: ${mod['countDownloads']}</li>
                                                     <li>Tamanho: ${mod['sizeMod']}</li>
                                                     <li>Tipo: ${mod['typeMod']}</li>
-                                                    <li>Postado em: ${mod['registrationDate']}</li>
-                                                    <li>Downloads: ${mod['countDownloads']}</li>
                                                     <li><a href="${mod['youtubeMod']}" target="_blank">Ver vídeo</a></li>
                                                     <li><a href="${mod['downloadMod']}" target="_blank">Baixar</a></li>
                                                 </ul>
                                             </div>
 
                                         <button onclick="modal.classList.remove('active'), document.documentElement.style.overflowY = 'auto'">fechar</button>
+
+                                        <button onclick="window.location.href = 'view/viewMod.php?modId=${mod['modId']}'" style='left: 20px; width: 120px;'>Ver tudo</button>
                                     </div>`
             }, 100)
         }

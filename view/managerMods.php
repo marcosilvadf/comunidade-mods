@@ -76,7 +76,11 @@
                                 <i class="fa-solid fa-pen"></i>
                             <span style="display: none;"></span>
                             </div>
-                        </label>                        
+                        </label>
+
+                    <div id="delete" style="left: 20px;" onclick="">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
 
                     <input type="hidden" name="modId" id="modId">
 
@@ -127,7 +131,7 @@
         let containerMods = document.querySelector('#containerMods')
         let rotate = document.querySelectorAll('.addMod')
         let modal = document.querySelector('.modal')
-        let form = document.querySelector('#form')
+        let form = document.querySelector('#delete')
         let rotation = 0
 
         function listAllMods() {
@@ -180,7 +184,7 @@
             let iframe = document.querySelector('#sql')
             iframe.src = `../controller/getModById.php?modid=${id}`
             let timer = setInterval(() => {
-                var mod = JSON.parse(window.sessionStorage.getItem('getModId'))
+                var mod = JSON.parse(window.sessionStorage.getItem('getModId'))                
                 modId.value = mod['modId']
                 titulo.value = mod['titleMod']
                 descMod.value = mod['descMod']
@@ -188,13 +192,11 @@
                 tTam.value = mod['sizeMod'].replace(parseFloat(mod['sizeMod']), "")
                 typeMod.value = mod['typeMod']
                 video.value = mod['youtubeMod']
-                form.innerHTML += `<div id="delete" style="left: 20px;" onclick="dropMod(${mod['modId']})">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </div>`
+                form.setAttribute('onclick', `dropMod(${mod['modId']})`)
                 down.value = mod['downloadMod']
                 modal.classList.add('active')
                 imgMod.src = mod['bannerMod']
-                
+                console.log(titulo)
                 clearInterval(timer)
                 iframe.parentNode.removeChild(iframe)
                 window.sessionStorage.removeItem('getModId')

@@ -25,7 +25,12 @@ file.addEventListener('change', function()
             {
                 file.value = ''
                 span.innerHTML = 'Selecione a imagem de perfil'
-                image.src = '../image/logo.png'
+                if(originalProfile != null){
+                    image.src = originalProfile
+                }else{
+                    image.src = '../image/logo.png'
+
+                }
                 alert('As imagens de perfil devem ser quadradas, máximo: 1080x1080 pixels')
             }
 
@@ -33,7 +38,12 @@ file.addEventListener('change', function()
             {
                 file.value = ''
                 span.innerHTML = 'Selecione a imagem de perfil'
-                image.src = '../image/logo.png'
+                if(originalProfile != null){
+                    image.src = originalProfile
+                }else{
+                    image.src = '../image/logo.png'
+
+                }
                 alert('Essa imagem excede o tamanho, máximo: 1080x1080 pixels')
             }
         }, 100);

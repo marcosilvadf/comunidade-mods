@@ -12,6 +12,7 @@
     <script src="../js/menu.js" defer></script>
     <script src="../js/menuFloat.js" defer></script>
     <script src="../js/loadProfileSQLView.js" defer></script>
+    <script src="../js/fileProfile.js" defer></script>
     <title>Perfil</title>
 </head>
 <body onload="profile()">
@@ -55,8 +56,19 @@
     <main>
         <div class="boxProfile">
 
-            <img src="../image/logo.png" alt="" id="photoProfile">
-            <h4 id="name"></h4>
+        <form action="../view/formAddMod.php" method="post"  autocomplete="off">
+            <label for="prof">
+                <img src="../image/logo.png" alt="" id="photoProfile" class="profile">
+                <div id="pen"><i class="fa-solid fa-pen"></i></div>
+            </label>    
+
+            <div class="profile" style="display: none;">
+                <label for=""><span></span></label>
+            </div>
+
+            <input type="file" name="prof" id="prof" style="display: none;" disabled>
+            <input type="text" name="name" id="name" readonly>
+        </form>
             <ul>
                 <li>seu nível: <span id="level"></span></li>
                 <li>Mods postados: <span id="posts"></span></li>
@@ -64,8 +76,12 @@
             </ul>
             <div class="bottom">
                 <span class="panel"><a href="managerMods.php">Gerenciar mods</a></span>
-                <span class="editProfile"><a href="">Editar perfil</a></span>
-            </div>            
+                <span class="editProfile" onclick="sendForm()"><a>Editar perfil</a></span>
+            </div>
+            
+            <button id="cancel" style="display: none;left: 20px;" onclick="cancelEditProfile()"><i class="fa-solid fa-xmark"></i></button>
+
+            <button id="edit" onclick="editProfile()"><i class="fa-solid fa-pen-to-square"></i></button>
         </div>
     </main>
 
@@ -74,18 +90,52 @@
     </footer>
 
     <script>
+        let editProfileImg = document.querySelector("input[type='file']")
         let photoProfile = document.querySelector('#photoProfile')
         let name = document.querySelector('#name')
         let level = document.querySelector('#level')
         let posts = document.querySelector('#posts')
         let date = document.querySelector('#date')
+        let form = document.querySelector('form')
+        let edit = document.querySelector('#edit')
+        let pen = document.querySelector('#pen')
+        let cancelButton = document.querySelector('#cancel')
+        let orginalName = ''
+        let originalProfile = ''
 
         function loadAllProf(data) {
             photoProfile.src = data['profile']
-            name.innerHTML = data['name']
+            originalProfile = data['profile']
+            name.value = data['name']
+            orginalName = data['name']
             level.innerHTML = data['level']
             posts.innerHTML = data['qtdMods']
             date.innerHTML = data['registrationDate']
+        }
+
+        function sendForm(){
+            form.submit()
+        }
+
+        function editProfile(){
+            edit.innerHTML = '<i class="fa-solid fa-check"></i>'
+            edit.setAttribute('onclick', 'sendForm()')
+            name.focus()
+            pen.style.display = 'flex'
+            cancelButton.style.display = 'block'
+            name.readOnly = false
+            editProfileImg.disabled = false
+        }
+
+        function cancelEditProfile(){
+            edit.innerHTML = '<i class="fa-solid fa-pen-to-square">'
+            edit.setAttribute('onclick', 'editProfile()')
+            name.value = orginalName
+            pen.style.display = 'none'
+            image.src = originalProfile
+            cancelButton.style.display = 'none'
+            name.readOnly = true   
+            editProfileImg.disabled = true         
         }
     </script>
 </body>

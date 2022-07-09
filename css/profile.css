@@ -9,6 +9,31 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.466);
 }
 
+.boxProfile label
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.boxProfile label #pen
+{
+    overflow: hidden;
+    position: absolute;
+    bottom: 12px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.527);
+    border: 1px solid white;
+    width: 30px;
+    height: 30px;
+}
+
 .boxProfile img
 {
     width: 30%;
@@ -185,4 +210,39 @@ main
     height: 50px;
     border-radius: 50%;
     border: 2px solid white;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form #name
+{
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;;
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    width: 70%;
+    height: 60px;
+}
+
+#edit, #cancel
+{
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(51, 51, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.466);
+    font-size: 25px;
+    color: white;
+    width: 50px;
+    height: 50px;
 }

@@ -52,11 +52,6 @@
 
     <main>
 
-        <form action="" id="search">
-            <input type="text" name="" id="" placeholder="Pesquisar">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
-
         <div id="modal">
                 
         </div>
@@ -133,6 +128,8 @@
                                             </div>
 
                                         <button onclick="modal.classList.remove('active'), document.documentElement.style.overflowY = 'auto'">fechar</button>
+
+                                        <button onclick="window.location.href = '../view/viewMod.php?modId=${mod['modId']}'" style='left: 20px; width: 120px;'>Ver tudo</button>
                                     </div>`
             }, 100)
         }

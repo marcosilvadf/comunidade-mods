@@ -374,10 +374,11 @@ div.line
 
 .upProfile
 {
+    margin-top: 30px;
     font-weight: 100;
     text-decoration: none;
     color: currentColor;
-    width: 40%;
+    width: 50%;
     align-self: flex-start;
     display: flex;
     flex-direction: row;
@@ -579,7 +580,7 @@ div.line
 #modal.active > div .descMod ul
 {
     position: absolute;
-    bottom: 100px;
+    bottom: 150px;
     padding-inline-start: 0px;
     list-style-type: none;
 }
