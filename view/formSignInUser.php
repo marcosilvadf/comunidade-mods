@@ -62,21 +62,31 @@ session_start();
                     <span>Selecione a imagem de perfil</span>                                             
                     </label>
 
-                    <input type="file" name="prof" id="prof" accept="image/*">
+                    <input type="file" name="prof" id="prof" accept="image/*" onchange="ifUser()">
                 </div>
 
-                <input type="text" name="user" id="user" placeholder="Usuário:">
+                <input type="text" name="user" id="user" placeholder="Usuário:" onblur="ifUser()" required>
 
-                <input type="text" name="keyForPass" id="keyForPass" placeholder="Palavra para recuperar senha:">
+                <input type="text" name="keyForPass" id="keyForPass" placeholder="Palavra para recuperar senha:" required>
 
                 <div class="showHidePass">
                     <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                    <input type="password" name="pass" id="pass" placeholder="Senha:">
+                    <input type="password" name="pass" id="pass" placeholder="Senha:" required>
                 </div>
 
                 <div class="showHidePass">
                     <span class="eye"><i class="fa-solid fa-eye"></i></span>
                     <input type="password" name="pass" id="confirmPass" class="error" placeholder="Confirmar senha:">
+                </div>
+
+                <div class="checkbox">                    
+                    <input type="checkbox" name="" id="useTerms" class="checkinput">
+                    <label for="useTerms">Você concorda com <a href="">os termos de uso</a></label>
+                </div>
+                
+                <div class="checkbox">       
+                    <input type="checkbox" name="" id="cookie" class="checkinput">
+                    <label for="cookie">Aceita os cookies</label>
                 </div>
 
                 <input type="submit" value="cadastrar">
@@ -103,7 +113,8 @@ session_start();
     <div id="nav" style="display: none;"></div>
 
     <script>
-        let user = document.querySelector('#user')
+        let cookie = document.querySelector('#cookie')
+        let useTerms = document.querySelector('#useTerms')
         let send = document.querySelector("input[type='submit']")
         let navegador = document.querySelector('#nav')
         let aviso = document.querySelector('.warn')
@@ -115,8 +126,8 @@ session_start();
         btnWarn.onclick = function () {
             aviso.classList.remove('nouser')
         }
-
-        user.addEventListener('blur', function ifUser(){
+        
+        function ifUser(){
             if(user.value != ''){
                 navegador.innerHTML += `<iframe src="../controller/ifExistUser.php?name=${user.value}" frameborder="0" id="sql" ></iframe>`
                 let iframe = document.querySelector('#sql')
@@ -125,7 +136,7 @@ session_start();
                     var data = window.sessionStorage.getItem('id')
                     clearInterval(timer)
                     window.sessionStorage.removeItem('id')
-                    iframe.parentNode.removeChild(iframe)
+                    navegador.innerHTML = ''
                     if(data == 'false'){
                         aviso.classList.add('nouser')
                         user.style.borderBottom = '1px solid red'
@@ -133,14 +144,34 @@ session_start();
                         send.style.transition = '.2s'
                         formSended = false
                     }else{
-                        user.style.borderBottom = '1px solid white'
-                        send.style.filter = 'grayscale(0%)'
-                        send.style.transition = '.2s'
-                        formSended = true
+                        if(cookie.checked == true && useTerms.checked == true && file.files[0] != null){
+                            user.style.borderBottom = '1px solid white'
+                            send.style.filter = 'grayscale(0%)'
+                            send.style.transition = '.2s'
+                            formSended = true
+                        }else{
+                            user.style.borderBottom = '1px solid red'
+                            send.style.filter = 'grayscale(100%)'
+                            send.style.transition = '.2s'
+                            formSended = false
+                        }                    
                     }
                 }, 100);
+            }else{
+                user.style.borderBottom = '1px solid red'
+                send.style.filter = 'grayscale(100%)'
+                send.style.transition = '.2s'
+                formSended = false
             }
-        })
+        }
+
+        cookie.addEventListener('change', ()=> {
+            ifUser()
+        })  
+        
+        useTerms.addEventListener('change', ()=> {
+            ifUser()
+        })  
 
         function sendForm(event){
            if(!(formSended)){
