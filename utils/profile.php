@@ -14,6 +14,10 @@ class Profile{
         {
             if(move_uploaded_file($pathTmp, $pathEnd))
             {
+                if(array_key_exists("originalImage", $file))
+                {
+                    unlink($file["originalImage"]);
+                }
                 return $pathEnd;
             }else
             {

@@ -95,4 +95,20 @@ class UserDAO{
             exit;
         }
     }
+
+    public function editProfile(UserDTO $userDTO)
+    {
+        try 
+        {
+            $sql = "UPDATE tb_user SET name = ?, profile = ? WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $userDTO->getName());
+            $stmt->bindValue(2, $userDTO->getProfile());
+            $stmt->bindValue(3, $userDTO->getId());
+            return $stmt->execute();            
+        } catch (PDOException $e)
+        {
+            return $e;
+        }
+    }
 }

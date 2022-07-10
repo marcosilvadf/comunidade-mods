@@ -56,7 +56,7 @@
     <main>
         <div class="boxProfile">
 
-        <form action="../view/formAddMod.php" method="post"  autocomplete="off">
+        <form action="../controller/editProfile.php" method="post"  autocomplete="off" enctype="multipart/form-data">
             <label for="prof">
                 <img src="../image/logo.png" alt="" id="photoProfile" class="profile">
                 <div id="pen"><i class="fa-solid fa-pen"></i></div>
@@ -76,7 +76,6 @@
             </ul>
             <div class="bottom">
                 <span class="panel"><a href="managerMods.php">Gerenciar mods</a></span>
-                <span class="editProfile" onclick="sendForm()"><a>Editar perfil</a></span>
             </div>
             
             <button id="cancel" style="display: none;left: 20px;" onclick="cancelEditProfile()"><i class="fa-solid fa-xmark"></i></button>

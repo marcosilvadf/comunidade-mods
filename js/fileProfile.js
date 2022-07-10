@@ -25,7 +25,7 @@ file.addEventListener('change', function()
             {
                 file.value = ''
                 span.innerHTML = 'Selecione a imagem de perfil'
-                if(originalProfile != null){
+                if(typeof originalProfile !== 'undefined'){
                     image.src = originalProfile
                 }else{
                     image.src = '../image/logo.png'
@@ -38,7 +38,7 @@ file.addEventListener('change', function()
             {
                 file.value = ''
                 span.innerHTML = 'Selecione a imagem de perfil'
-                if(originalProfile != null){
+                if(typeof originalProfile !== 'undefined'){
                     image.src = originalProfile
                 }else{
                     image.src = '../image/logo.png'

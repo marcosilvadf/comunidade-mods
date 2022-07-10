@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
     <script src="../js/menu.js" defer></script>
+    <script src="../js/loadProfileSQLView.js" defer></script>
+    <script src="../js/menuFloat.js" defer></script>
     <title>Ver mod</title>
 </head>
-<body>
+<body onload="profile()">
     <header>
         <div class="menu">
             <div class="menuIcon" onclick="showMenu()">
@@ -17,7 +19,18 @@
             </div>
         </div>
         <div class="title"><a href="../index.php">mods</a></div>
-        <div class="login"><a href="../view/formLogin.php">login</a></div>
+        <div class="login" onclick="menuFloat()">
+            <img src="../image/logo.png" alt="" class="menuFloat">
+        </div>
+
+        <div class="floatMenu">
+            <div>
+                <img src="../image/logo.png" alt="" id="menuProfile">
+                <ul>
+                    
+                </ul>
+            </div>
+        </div>
     </header>
 
     <div class="boxMenu">
@@ -75,6 +88,8 @@
         </div>        
     </main>
 
-    <footer></footer>    
+    <footer>
+        <div id="nav" style="display: none;"></div>
+    </footer>    
 </body>
 </html>
