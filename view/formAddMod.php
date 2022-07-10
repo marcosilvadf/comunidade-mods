@@ -34,8 +34,7 @@ if(empty($_COOKIE['idmods']))
         <div class="contentMenu">
             <ul>
                 <li><a href="../index.php">Início</a></li>
-                <li><a href="../view/allmods.php">Mods</a></li>
-                <li>Entrar/<wbr>Cadastrar</li>
+                <li><a href="../view/allmods.php">Mods</a></li>                
                 <li>Sobre</li>
             </ul>
         </div>

@@ -19,12 +19,12 @@
                     imageMenu.src = data['profile'].replace('../', '')
                     menuProfile.src = data['profile'].replace('../', '')
                     divFloatMenu.innerHTML += `<li><a href="view/profile.php">perfil</a></li> <li onclick="sair()">sair</li>`
-                    entrarCadas.innerHTML = '<a href="./view/profile.php">Perfil</a>'
+                    entrarCadas.innerHTML = '<a href="view/profile.php">Perfil</a>'
                 }else{
                     imageMenu.src = 'image/logo.png'
                     menuProfile.src = 'image/logo.png'
                     divFloatMenu.innerHTML = `<li><a href="view/formLogin.php">entrar</a></li>`
-                    entrarCadas.innerHTML = '<a href="./view/formLogin.php">Entrar/<wbr>Cadastrar</a>'
+                    entrarCadas.innerHTML = '<a href="view/formLogin.php">Entrar/<wbr>Cadastrar</a>'
                 }            
             }, 100)
         }

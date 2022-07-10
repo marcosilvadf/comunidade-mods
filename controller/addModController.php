@@ -1,6 +1,7 @@
 <?php
 require_once '../dao/modDAO.php';
 require_once '../dto/modDTO.php';
+require_once '../dao/userDAO.php';
 require_once '../utils/banner.php';
 session_start();
 
@@ -39,6 +40,12 @@ $res = $modDAO->saveMod($modDTO);
 
 if($res && is_bool($res) )
 {
+    $userDAO = new UserDAO();
+    $level = $userDAO->findById($idUser);
+    if($level['level'] == 1)
+    {
+        $userDAO->upLevel($idUser);
+    }
     header("Location: ../view/managerMods.php");
 }else
 {

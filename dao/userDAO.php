@@ -111,4 +111,17 @@ class UserDAO{
             return $e;
         }
     }
+
+    public function upLevel($id)
+    {
+        try 
+        {
+            $sql = "UPDATE tb_user SET level = '2' WHERE id = $id";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute();            
+        } catch (PDOException $e)
+        {
+            return $e;
+        }
+    }
 }

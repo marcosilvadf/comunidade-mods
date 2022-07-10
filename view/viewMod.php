@@ -38,7 +38,7 @@
             <ul>
                 <li><a href="../index.php">Início</a></li>
                 <li><a href="../view/allmods.php">Mods</a></li>
-                <li><a href="../view/formLogin.php">Entrar/<wbr>Cadastrar</a></li>
+                <li id="entCad"></li>
                 <li>Sobre</li>
             </ul>
         </div>

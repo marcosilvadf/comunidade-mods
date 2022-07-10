@@ -40,7 +40,7 @@
             <ul>
                 <li><a href="../index.php">Início</a></li>
                 <li>Mods</li>
-                <li><a href="../view/formLogin.php">Entrar/<wbr>Cadastrar</a></li>
+                <li id="entCad"></li>
                 <li>Sobre</li>
             </ul>
         </div>
