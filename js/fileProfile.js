@@ -32,6 +32,7 @@ file.addEventListener('change', function()
 
                 }
                 alert('As imagens de perfil devem ser quadradas, máximo: 1080x1080 pixels')
+                return
             }
 
             if(pixelWidth > 1080)
@@ -45,6 +46,7 @@ file.addEventListener('change', function()
 
                 }
                 alert('Essa imagem excede o tamanho, máximo: 1080x1080 pixels')
+                return
             }
         }, 100);
     }
