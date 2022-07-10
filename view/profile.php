@@ -86,6 +86,16 @@
 
     <footer>
         <div id="nav" style="display: none;"></div>
+
+        <?php
+        session_start();
+
+        if(isset($_SESSION['userExistForMods']))
+        {
+            echo "<script>alert('Nome de usuário já existe!')</script>";
+            unset($_SESSION['userExistForMods']);
+        }
+        ?>
     </footer>
 
     <script>
@@ -134,7 +144,8 @@
             image.src = originalProfile
             cancelButton.style.display = 'none'
             name.readOnly = true   
-            editProfileImg.disabled = true         
+            editProfileImg.disabled = true
+            file.value = null
         }
     </script>
 </body>

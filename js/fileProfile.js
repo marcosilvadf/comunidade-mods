@@ -3,13 +3,14 @@ let file = document.querySelector('#prof')
 let span = document.querySelector('div.profile label span')
 
 file.addEventListener('change', function()
-{
+{    
+    let reader = new FileReader()
+
     if(file.files.length <= 0)
     {
+        file.value = null
         return
     }
-
-    let reader = new FileReader()
 
     reader.onload = function ()
     {        

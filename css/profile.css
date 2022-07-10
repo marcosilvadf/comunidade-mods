@@ -41,12 +41,14 @@ button
 
 .boxProfile img
 {
-    width: 30%;
+    width: 107px;
+    height: 107px;
     margin: 10px;
     position: relative;
     border-radius: 50%;
     border: 1px solid currentColor;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.466);
+    object-fit: cover;
 }
 
 .boxProfile h4
