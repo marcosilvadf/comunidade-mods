@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Jul-2022 às 15:32
+-- Tempo de geração: 10-Jul-2022 às 16:25
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -89,7 +89,7 @@ CREATE TABLE `tb_user` (
 INSERT INTO `tb_user` (`id`, `name`, `profile`, `password`, `recovery`, `level`, `registrationDate`) VALUES
 (1, 'maior', '../image/profile/62cad2f095e72.jpg', 'b95c988b121e7433c4da81c76b90a79b', 'maior', '4', '2022-07-05 10:39:42'),
 (2, 'marcos', '../image/profile/62caceab1fa8e.jpg', '14c879f3f5d8ed93a09f6090d77c2cc3', '3434', '3', '2022-07-05 14:16:18'),
-(3, 'mlk', '../image/profile/62cad415bddbc.jpg', '8d55cc5497f203ce9814caeeb42dbeff', 'mlk', '1', '2022-07-10 10:28:53');
+(3, 'maiorzin', '../image/profile/62cade34f3d6c.jpg', '8d55cc5497f203ce9814caeeb42dbeff', 'mlk', '1', '2022-07-10 10:28:53');
 
 --
 -- Índices para tabelas despejadas
