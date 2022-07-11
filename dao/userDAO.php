@@ -124,4 +124,21 @@ class UserDAO{
             return $e;
         }
     }
+
+    public function getUserByKeyForPass(UserDTO $userDTO)
+    {
+        try 
+        {
+            $sql = "SELECT * FROM tb_user WHERE name = ? AND recovery = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $userDTO->getName());
+            $stmt->bindValue(2, $userDTO->getKeyForPass());
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);         
+            return $user;
+        } catch (PDOException $e)
+        {
+            return $e;
+        }
+    }
 }

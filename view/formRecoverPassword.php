@@ -43,41 +43,75 @@
     <main>
         <div class="form">
             <h4 class="formTitle">Recuperar senha</h4>
-            <form action="" method="post">
+            <form action="" method="post" autocomplete="off">
                 <input type="text" name="user" id="user" placeholder="Usuário:" required>
 
                 <input type="text" name="keyForPass" id="keyForPass" placeholder="Palavra para recuperar senha:" required>
 
-                <?php
-                if(false){
-                    ?>
-
+                <div id="allPass">
                     <div class="showHidePass">
                         <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                        <input type="password" name="pass" id="pass" placeholder="Senha:" required>
+                        <input type="password" name="pass" id="pass" placeholder="Senha:">
                     </div>
 
                     <div class="showHidePass">
                         <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                        <input type="password" name="pass" id="confirmPass" class="error" placeholder="Confirmar senha:" required>
-                    </div>
+                        <input type="password" name="pass" id="confirmPass" class="error" placeholder="Confirmar senha:">
+                    </div>                    
+                </div>
 
-                    <?php
-                }else{
-                    ?>
-
-                    <span class="blankRes">usuário não encontrado</span>
-
-                    <?php
-                    }
-                ?>
-
-                <!-- esse botão tem que mudar o nome -->
-                <input type="submit" value="recuperar">
+                <span class="blankRes">Digite o usuário e a palavra passe</span>
+                                    
+                <input type="submit" value="encontrar usuário" onclick="findUser(event)">
             </form>            
         </div>
     </main>
 
-    <footer></footer>    
+    <footer>
+        <div id="nav" style="display: none;"></div>
+    </footer>
+
+    <script>
+        let inputSenha = document.querySelectorAll('.showHidePass input')
+        let divSenha = document.querySelectorAll('.showHidePass')
+        let message = document.querySelector('.blankRes')
+        let formRecovery = document.querySelector('form')
+        let submitButton = document.querySelector("input[type='submit'")        
+        let navegador = document.querySelector('#nav')
+        let allpass = document.querySelector('#allPass')
+        
+        for (let index = 0; index < divSenha.length; index++) {
+            divSenha[index].style.visibility = 'hidden'
+        }
+
+        function findUser(event){
+            event.preventDefault()
+            let user = document.querySelector('#user')
+            let keyPass = document.querySelector('#keyForPass')
+            navegador.innerHTML += `<iframe src="../controller/getUserByRecovery.php?name=${user.value}&key=${keyPass.value}" frameborder="0" id="sql" ></iframe>`
+            let iframe = document.querySelector('#sql')
+            iframe.src = `../controller/getUserByRecovery.php?name=${user.value}&key=${keyPass.value}`
+            let timer = setInterval(() => {        
+                var data = window.sessionStorage.getItem('userForMods')
+
+                if(data == 'true'){
+                    for (let index = 0; index < inputSenha.length; index++) {
+                        divSenha[index].style.visibility = 'visible'                        
+                    }
+                    allpass.classList.add('active')
+                    message.innerHTML = 'Digite a nova senha'
+                    user.readOnly = 'false'
+                    keyPass.readOnly = 'false'
+                    submitButton.value = 'mudar senha'
+                }else{
+                    
+                }
+
+                clearInterval(timer)
+                window.sessionStorage.removeItem('userForMods')
+                navegador.innerHTML = ''
+            }, 100)
+        }
+    </script>
 </body>
 </html>

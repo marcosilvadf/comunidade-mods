@@ -48,10 +48,10 @@
             </div>
             <h4 class="formTitle">login</h4>
             <form method="POST" onsubmit="login(event)" autocomplete="off">
-                <input type="text" name="user" id="user" placeholder="Usuário:">
+                <input type="text" name="user" id="user" placeholder="Usuário:" required>
                 <div class="showHidePass">
                     <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                    <input type="password" name="pass" id="pass" placeholder="Senha:">
+                    <input type="password" name="pass" id="pass" placeholder="Senha:" required>
                 </div>
                 <input type="submit" value="entrar">
             </form>
