@@ -45,7 +45,7 @@
                 <li><a href="../index.php">Início</a></li>
                 <li><a href="../view/allmods.php">Mods</a></li>
                 <li id="entCad"></li>
-                <li>Sobre</li>
+                <li><a href="about.php">Sobre</a></li>
             </ul>
         </div>
 

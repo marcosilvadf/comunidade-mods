@@ -41,7 +41,7 @@
                 <li><a href="../index.php">Início</a></li>
                 <li>Mods</li>
                 <li id="entCad"></li>
-                <li>Sobre</li>
+                <li><a href="about.php">Sobre</a></li>
             </ul>
         </div>
 
@@ -88,8 +88,9 @@
 
     </main>
 
-    <footer></footer>
-    <div id="nav" style="display: none;"></div>
+    <footer>
+        <div id="nav" style="display: none;"></div>
+    </footer>
 
     <script>
         let modal = document.querySelector('#modal')
