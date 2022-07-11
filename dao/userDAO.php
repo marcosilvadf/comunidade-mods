@@ -141,4 +141,19 @@ class UserDAO{
             return $e;
         }
     }
+
+    public function recoveryPass(UserDTO $userDTO)
+    {
+        try 
+        {
+            $sql = "UPDATE tb_user SET password = ? WHERE id = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $userDTO->getPass());
+            $stmt->bindValue(2, $userDTO->getId());
+            return $stmt->execute();            
+        } catch (PDOException $e)
+        {
+            return $e;
+        }
+    }
 }

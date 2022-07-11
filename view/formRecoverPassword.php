@@ -43,7 +43,7 @@
     <main>
         <div class="form">
             <h4 class="formTitle">Recuperar senha</h4>
-            <form action="" method="post" autocomplete="off">
+            <form action="../controller/recoveryPass.php" method="post" autocomplete="off">
                 <input type="text" name="user" id="user" placeholder="Usuário:" required>
 
                 <input type="text" name="keyForPass" id="keyForPass" placeholder="Palavra para recuperar senha:" required>
@@ -51,12 +51,12 @@
                 <div id="allPass">
                     <div class="showHidePass">
                         <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                        <input type="password" name="pass" id="pass" placeholder="Senha:">
+                        <input type="password" name="pass" id="pass" placeholder="Senha:" required>
                     </div>
 
                     <div class="showHidePass">
                         <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                        <input type="password" name="pass" id="confirmPass" class="error" placeholder="Confirmar senha:">
+                        <input type="password" name="confirmPass" id="confirmPass" class="error" placeholder="Confirmar senha:" required>
                     </div>                    
                 </div>
 
@@ -105,6 +105,7 @@
                     user.readOnly = 'false'
                     keyPass.readOnly = 'false'
                     submitButton.value = 'mudar senha'
+                    submitButton.removeAttribute('onclick')
                 }else{
                     message.innerHTML = 'Usuário não encontrado ou palavra incorreta'
                 }
