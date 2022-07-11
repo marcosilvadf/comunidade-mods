@@ -104,7 +104,7 @@
                     keyPass.readOnly = 'false'
                     submitButton.value = 'mudar senha'
                 }else{
-                    
+                    message.innerHTML = 'Usuário não encontrado ou palavra incorreta'
                 }
 
                 clearInterval(timer)
