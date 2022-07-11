@@ -1,0 +1,43 @@
+h1
+{
+    border-bottom: 1px solid currentColor;    
+}
+
+h3
+{
+    align-self: flex-start;
+    margin: 30px 10px 10px;
+    font-size: .9em;
+    letter-spacing: 2px;
+    font-weight: normal; 
+    padding: 0px 4px;   
+}
+
+p
+{
+    text-indent: 1.25cm;
+    padding: 0px 10px;
+    text-align: justify;
+}
+
+a
+{
+    color: currentColor;
+}
+
+ul
+{
+    align-self: flex-start;
+    list-style: none;
+    padding: 5px;
+}
+
+ul li
+{
+    margin-bottom: 10px;
+}
+
+ul li a
+{
+    text-decoration: none;
+}
