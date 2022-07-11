@@ -99,6 +99,8 @@
                         divSenha[index].style.visibility = 'visible'                        
                     }
                     allpass.classList.add('active')
+                    message.style.transition = '.5s'
+                    message.style.backgroundColor = 'green'
                     message.innerHTML = 'Digite a nova senha'
                     user.readOnly = 'false'
                     keyPass.readOnly = 'false'
