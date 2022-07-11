@@ -87,7 +87,7 @@
             <li><a href=""></a></li>
         </ul>
 
-        <h3>Termos de uso</h3>
+        <h1>Termos de uso</h1>
 
         Esse é meu primeiro site, então, peguem leve :)
 
