@@ -59,6 +59,8 @@
     $modDAO = new ModDAO();
 
     $mod = $modDAO->getModById($modId);
+    $_SESSION['modId'] = $mod['modId'];
+    $_SESSION['modUserId'] = $mod['userId'];
     $_SESSION['downModLink'] = $mod['downloadMod'];
     $_SESSION['youtubeMod'] = $mod['youtubeMod'];
 
@@ -76,6 +78,7 @@
 
                 <div class="list">
                     <ul>
+                        <li><a href="../view/denunciation.php" style="color: white;">Denunciar Mod</a></li>
                         <li>Downloads: <?= $mod['countDownloads']?></li>
                         <li>Postado: <?= date('d/m/Y', strtotime($mod['registrationDate']))?></li>
                         <li>Tamanho: <?= strtoupper($mod['sizeMod'])?></li>
@@ -93,6 +96,6 @@
 
     <footer>
         <div id="nav" style="display: none;"></div>
-    </footer>    
+    </footer>
 </body>
 </html>

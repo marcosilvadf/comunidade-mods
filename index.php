@@ -56,9 +56,9 @@
 
         <div class="channels">
             
-            <a href="" class="linkChannels">
-                <img src="image/banner-mods.jpg" alt="">
-                <h4>vagner tutoriais</h4>
+            <a href="" class="linkChannels" style="background-color: white;">
+                <img src="image/logo.png" alt="">
+                <h4 style="color: red; font-size: 25px;">Anuncie aqui!</h4>
             </a>
             
         </div>
