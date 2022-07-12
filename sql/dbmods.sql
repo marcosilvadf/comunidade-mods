@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Jul-2022 às 16:25
+-- Tempo de geração: 13-Jul-2022 às 01:18
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -37,6 +37,28 @@ CREATE TABLE `tb_comments` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tb_denunciation`
+--
+
+CREATE TABLE `tb_denunciation` (
+  `tb_user_id` int(11) NOT NULL,
+  `tb_mods_modId` int(11) NOT NULL,
+  `tb_mods_userId` int(11) NOT NULL,
+  `titleD` varchar(255) NOT NULL,
+  `descD` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tb_denunciation`
+--
+
+INSERT INTO `tb_denunciation` (`tb_user_id`, `tb_mods_modId`, `tb_mods_userId`, `titleD`, `descD`) VALUES
+(1, 10, 1, 'testef ', 'fdadfe efef ewff'),
+(2, 10, 1, 'teste', 'drfefefeihsi feihfuedeef efheudhfd\r\n');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `tb_mods`
 --
 
@@ -61,7 +83,7 @@ CREATE TABLE `tb_mods` (
 INSERT INTO `tb_mods` (`modId`, `titleMod`, `bannerMod`, `descMod`, `sizeMod`, `youtubeMod`, `downloadMod`, `typeMod`, `countDownloads`, `registrationDate`, `userId`) VALUES
 (5, 'motinhaa', '../image/banner/62c6154087225.jpg', 'essa moto é incrível, mas eu perdi ela', '444kb', 'só n o yt', 'nem teim', 'gta', 331, '2022-07-05 11:58:18', 1),
 (8, 'E agora?', '../image/banner/62c84c4896e64.jpg', 'esse dia foi mai louco ainda!!', '3kb', 'youtubeee', 'mediafireeee', 'cleo', 0, '2022-07-05 12:43:13', 1),
-(10, 'BANIDO', '../image/banner/62c615fc17a89.jpg', 'eitaaaaaa, nunca mais jogo nesse server ._.', '1kb', 'aqui é o link do vídeo', 'aqui é o link de download', 'gta', 500, '2022-07-06 18:15:28', 1),
+(10, 'BANIDO', '../image/banner/62c615fc17a89.jpg', 'eitaaaaaa, nunca mais jogo nesse server ._.', '1kb', 'https://linkebr.com/member/dashboard', 'https://stackoverflow.com/questions/33080226/how-to-open-a-url-using-php', 'gta', 500, '2022-07-06 18:15:28', 1),
 (11, 'F rapaziada', '../image/banner/62c616c3f1e05.png', 'isso foi covardia', '350gb', 'nem precisa', 'tambem não precisa', 'grafico', 0, '2022-07-06 20:12:03', 2),
 (12, 'RP online, mas todo rp é online ._.', '../image/banner/62c8478be0fa0.jpg', 'Eu sei, tenho alguns títulos meio estranhos, mas não necessários pra ganhar um bom engajamento', '3333gb', 'https://www.youtube.com/', 'https://www.mediafire.com/', 'grafico', 0, '2022-07-08 12:04:43', 1),
 (13, 'Essa live foi incrível kkkjk', '../image/banner/62c847d289cf5.png', 'arranjei um trampo, perdi ele, fiquei milionário, perdi tudo e agora eu volto com tudo.', '20mb', 'https://www.youtube.com/', 'https://www.mediafire.com/', 'gta', 0, '2022-07-08 12:05:54', 1);
@@ -89,7 +111,7 @@ CREATE TABLE `tb_user` (
 INSERT INTO `tb_user` (`id`, `name`, `profile`, `password`, `recovery`, `level`, `registrationDate`) VALUES
 (1, 'maior', '../image/profile/62cad2f095e72.jpg', 'b95c988b121e7433c4da81c76b90a79b', 'maior', '4', '2022-07-05 10:39:42'),
 (2, 'marcos', '../image/profile/62caceab1fa8e.jpg', '14c879f3f5d8ed93a09f6090d77c2cc3', '3434', '3', '2022-07-05 14:16:18'),
-(3, 'maiorzin', '../image/profile/62cade34f3d6c.jpg', '8d55cc5497f203ce9814caeeb42dbeff', 'mlk', '1', '2022-07-10 10:28:53');
+(8, 'teste', '../image/profile/62cc853a61cc0.jpg', '698dc19d489c4e4db73e28a713eab07b', 'teste', '1', '2022-07-11 17:16:58');
 
 --
 -- Índices para tabelas despejadas
@@ -101,6 +123,13 @@ INSERT INTO `tb_user` (`id`, `name`, `profile`, `password`, `recovery`, `level`,
 ALTER TABLE `tb_comments`
   ADD KEY `fk_tb_comments_tb_user1` (`userId`),
   ADD KEY `fk_tb_comments_tb_mods1` (`modId`);
+
+--
+-- Índices para tabela `tb_denunciation`
+--
+ALTER TABLE `tb_denunciation`
+  ADD PRIMARY KEY (`tb_user_id`,`tb_mods_modId`,`tb_mods_userId`),
+  ADD KEY `fk_tb_user_has_tb_mods_tb_mods1` (`tb_mods_modId`,`tb_mods_userId`);
 
 --
 -- Índices para tabela `tb_mods`
@@ -123,13 +152,13 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT de tabela `tb_mods`
 --
 ALTER TABLE `tb_mods`
-  MODIFY `modId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `modId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restrições para despejos de tabelas
@@ -141,6 +170,13 @@ ALTER TABLE `tb_user`
 ALTER TABLE `tb_comments`
   ADD CONSTRAINT `fk_tb_comments_tb_mods1` FOREIGN KEY (`modId`) REFERENCES `tb_mods` (`modId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tb_comments_tb_user1` FOREIGN KEY (`userId`) REFERENCES `tb_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `tb_denunciation`
+--
+ALTER TABLE `tb_denunciation`
+  ADD CONSTRAINT `fk_tb_user_has_tb_mods_tb_mods1` FOREIGN KEY (`tb_mods_modId`,`tb_mods_userId`) REFERENCES `tb_mods` (`modId`, `userId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_tb_user_has_tb_mods_tb_user1` FOREIGN KEY (`tb_user_id`) REFERENCES `tb_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `tb_mods`

@@ -63,7 +63,7 @@ if(empty($_COOKIE['idmods']))
 
     <div class="form formD">
         <h4 class="formTitle">Denunciar Mod</h4>
-        <form action="../controller/addDenunciation.php" method="post">
+        <form action="../controller/addDenunciation.php" method="post" autocomplete="off">
             <input type="hidden" name="modId" value="<?= $_SESSION['modId']; ?>">
             <input type="hidden" name="userModId" value="<?= $_SESSION['modUserId']; ?>">
             <input type="hidden" name="userId" value="<?= $_COOKIE['idmods']; ?>">
