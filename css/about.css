@@ -41,3 +41,8 @@ ul li a
 {
     text-decoration: none;
 }
+
+.floatMenu div ul
+{
+    align-self: center;
+}

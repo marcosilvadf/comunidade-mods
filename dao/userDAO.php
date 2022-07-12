@@ -156,4 +156,17 @@ class UserDAO{
             return $e;
         }
     }
+
+    public function deleteUser($id)
+    {
+        try 
+        {
+            $sql = "DELETE FROM tb_user WHERE id = $id";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute();            
+        } catch (PDOException $e)
+        {
+            return false;
+        }
+    }
 }

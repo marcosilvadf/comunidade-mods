@@ -52,13 +52,16 @@
 
     <?php
     require_once '../dao/modDAO.php';
+    session_start();
 
     $modId = $_GET['modId'];
 
     $modDAO = new ModDAO();
 
     $mod = $modDAO->getModById($modId);
-    
+    $_SESSION['downModLink'] = $mod['downloadMod'];
+    $_SESSION['youtubeMod'] = $mod['youtubeMod'];
+
     ?>
         <div class="bannerMod">
             <img src="<?= $mod['bannerMod']?>" alt="">
@@ -81,8 +84,8 @@
                 </div>                        
 
                 <div class="line">
-                    <a href="<?= $mod['youtubeMod']?>" target="_blank">Ver vídeo</a>
-                    <a href="<?= $mod['downloadMod']?>" target="_blank">Baixar</a>
+                    <a href="../controller/openVideo.php">Ver vídeo</a>
+                    <a href="../controller/downloadMod.php">Baixar</a>
                 </div>            
             </div>
         </div>        

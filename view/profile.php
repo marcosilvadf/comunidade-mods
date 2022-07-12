@@ -24,11 +24,15 @@
         </div>
         <div class="title"><a href="../index.php">mods</a></div>
 
-        <div class="login" onclick="menuFloat()">
-            <img src="../image/logo.png" alt="" class="menuFloat">
+        <div class="login">
+            <img src="../image/logo.png" alt="" class="menuFloat" style="visibility: hidden;">
+
+            <div id="delete" style="right: 10px; top: 10px;" onclick="">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
         </div>
 
-        <div class="floatMenu">
+        <div class="floatMenu" style="visibility: hidden;">
             <div>
                 <img src="../image/logo.png" alt="" id="menuProfile">
                 <ul>
@@ -109,6 +113,7 @@
         let edit = document.querySelector('#edit')
         let pen = document.querySelector('#pen')
         let cancelButton = document.querySelector('#cancel')
+        let deleteProfile = document.querySelector('#delete')
         let orginalName = ''
         let originalProfile = ''
 
@@ -120,6 +125,7 @@
             level.innerHTML = data['level']
             posts.innerHTML = data['qtdMods']
             date.innerHTML = data['registrationDate']
+            deleteProfile.setAttribute('onclick', `deleteUser(${data['id']})`)
         }
 
         function sendForm(){
@@ -146,6 +152,12 @@
             name.readOnly = true   
             editProfileImg.disabled = true
             file.value = null
+        }
+
+        function deleteUser(id){
+            if(confirm('Deseja deleter sua conta? Essa ação apagará todas as suas postagens!')){
+                window.location.href = `../controller/deleteUser.php?imd=${id}`
+            }
         }
     </script>
 </body>

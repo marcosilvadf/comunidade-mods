@@ -81,7 +81,7 @@ session_start();
 
                 <div class="checkbox">                    
                     <input type="checkbox" name="" id="useTerms" class="checkinput">
-                    <label for="useTerms">Você concorda com <a href="">os termos de uso</a></label>
+                    <label for="useTerms">Você concorda com <a href="about.php#useterms">os termos de uso</a></label>
                 </div>
                 
                 <div class="checkbox">       

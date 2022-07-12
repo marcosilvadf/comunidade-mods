@@ -126,4 +126,16 @@ class ModDAO{
             return false;
         }        
     }
+
+    public function deleteModByUser($id)
+    {
+        try {
+            $sql = "DELETE FROM tb_mods WHERE userId = $id";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute();   
+        } catch(PDOException $e)
+        {
+            return false;
+        }        
+    }
 }

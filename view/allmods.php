@@ -121,9 +121,7 @@
                                                 <ul>
                                                     <li>Downloads: ${mod['countDownloads']}</li>
                                                     <li>Tamanho: ${mod['sizeMod']}</li>
-                                                    <li>Tipo: ${mod['typeMod']}</li>                                                    
-                                                    <li><a href="${mod['youtubeMod']}" target="_blank">Ver vídeo</a></li>
-                                                    <li><a href="${mod['downloadMod']}" target="_blank">Baixar</a></li>
+                                                    <li>Tipo: ${mod['typeMod']}</li>                                           
                                                 </ul>
                                             </div>
 
