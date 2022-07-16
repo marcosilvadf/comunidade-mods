@@ -34,9 +34,16 @@ button
 
 #closeDivAll
 {
-    position: absolute;
+    display: none;
+    position: fixed;
     bottom: 100px;
     right: 40px;
+}
+
+#all.active #closeDivAll
+{
+    display: block;
+    transition-delay: 1s;
 }
 
 
@@ -62,4 +69,10 @@ th, td
 table tr td img
 {
     width: 50px;
+}
+
+table tr td a
+{
+    color: white;
+    text-decoration: none;
 }

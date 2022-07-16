@@ -83,7 +83,7 @@ if(empty($_SESSION['adminon']))
 
         function listMods(){
             divAll.classList.add('active')
-            tr = '<tr><th>Imagem</th><th>Título</th><th>Downloads</th><th>Tipo</th><th>Usuário</th></tr>'
+            tr = '<tr><th>Imagem</th><th>Título</th><th>Down<wbr>loads</th><th>Tipo</th><th>Usuário</th></tr>'
             listAll('controllerA.php', (data) => {
                 console.log(data)
                 data.forEach(areaMods)    
@@ -97,6 +97,9 @@ if(empty($_SESSION['adminon']))
                         <td>${element['countDownloads']}</td>
                         <td>${element['typeMod']}</td>
                         <td><img src='${element['profile']}'> <span>${element['name']}</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan='5' style='border-bottom: 1px solid white;'><a href='${element['modId']}'>Deletar</a></td>
                     </tr>`
             if(index == data.length -1){
                 table.innerHTML = tr
