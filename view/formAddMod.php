@@ -60,9 +60,9 @@ if(empty($_COOKIE['idmods']))
                     <input type="file" name="modImage" id="modImage">
                 </div>
 
-                <input type="text" name="titulo" id="titulo" placeholder="Título:">
+                <input type="text" name="titulo" id="titulo" placeholder="Título:" maxlength="20">
 
-                <textarea name="descMod" id="descMod" cols="30" rows="10" placeholder="Descrição do mod:"></textarea>
+                <textarea name="descMod" id="descMod" cols="30" rows="10" placeholder="Descrição do mod:" maxlength="200"></textarea>
 
                 <label for="nTam" id="lTam">Tamanho:</label>
                 <div id="tam">

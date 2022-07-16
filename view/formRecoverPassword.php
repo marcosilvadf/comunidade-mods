@@ -51,12 +51,12 @@
                 <div id="allPass">
                     <div class="showHidePass">
                         <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                        <input type="password" name="pass" id="pass" placeholder="Senha:" required>
+                        <input type="password" name="pass" id="pass" placeholder="Senha:" maxlength="10" required>
                     </div>
 
                     <div class="showHidePass">
                         <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                        <input type="password" name="confirmPass" id="confirmPass" class="error" placeholder="Confirmar senha:" required>
+                        <input type="password" name="confirmPass" id="confirmPass" class="error" placeholder="Confirmar senha:" maxlength="10" required>
                     </div>                    
                 </div>
 

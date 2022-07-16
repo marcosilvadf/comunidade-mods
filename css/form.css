@@ -375,6 +375,7 @@ div.error div p
     color: white;
     padding: 5px 5px;
     outline: none;
+    resize: none;
 }
 
 .formD textarea::placeholder

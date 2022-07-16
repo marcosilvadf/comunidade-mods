@@ -65,18 +65,18 @@ session_start();
                     <input type="file" name="prof" id="prof" accept="image/*" onchange="ifUser()">
                 </div>
 
-                <input type="text" name="user" id="user" placeholder="Usuário:" onblur="ifUser()" required>
+                <input type="text" name="user" id="user" placeholder="Usuário:" onblur="ifUser()" maxlength="20" required>
 
-                <input type="text" name="keyForPass" id="keyForPass" placeholder="Palavra para recuperar senha:" required>
+                <input type="text" name="keyForPass" id="keyForPass" maxlength="30" placeholder="Palavra para recuperar senha:" required>
 
                 <div class="showHidePass">
                     <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                    <input type="password" name="pass" id="pass" placeholder="Senha:" required>
+                    <input type="password" name="pass" id="pass" placeholder="Senha:" maxlength="10" required>
                 </div>
 
                 <div class="showHidePass">
                     <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                    <input type="password" name="pass" id="confirmPass" class="error" placeholder="Confirmar senha:">
+                    <input type="password" name="pass" id="confirmPass" class="error" maxlength="10" placeholder="Confirmar senha:">
                 </div>
 
                 <div class="checkbox">                    

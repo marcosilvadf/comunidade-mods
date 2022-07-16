@@ -63,7 +63,13 @@
     $_SESSION['modUserId'] = $mod['userId'];
     $_SESSION['downModLink'] = $mod['downloadMod'];
     $_SESSION['youtubeMod'] = $mod['youtubeMod'];
-
+        if(!array_key_exists("usermodlevel", $_COOKIE))
+        {
+            $userLevel = 0;
+        }else
+        {
+            $userLevel = $_COOKIE['usermodlevel'];
+        }
     ?>
         <div class="bannerMod">
             <img src="<?= $mod['bannerMod']?>" alt="">
@@ -87,8 +93,17 @@
                 </div>                        
 
                 <div class="line">
-                    <a href="../controller/openVideo.php">Ver vídeo</a>
-                    <a href="../controller/downloadMod.php">Baixar</a>
+                    <?php
+                    if($mod['level'] >= 4 || $userLevel >= 4)
+                    {
+                        echo "<a href='$mod[youtubeMod]'>Ver vídeo</a>";
+                        echo "<a href='$mod[downloadMod]'>Baixar</a>";
+                    }else
+                    {
+                        echo "<a href='../controller/openVideo.php'>Ver vídeo</a>";
+                        echo "<a href='../controller/downloadMod.php'>Baixar</a>";
+                    }
+                    ?>
                 </div>            
             </div>
         </div>        
