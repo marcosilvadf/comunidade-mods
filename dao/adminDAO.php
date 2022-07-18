@@ -55,4 +55,58 @@ class AdminDAO{
             return $resMods;
         }
     }
+
+    public function listAllUsers()
+    {
+        try
+        {
+            $sql = "SELECT * FROM tb_user";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($users))
+            {
+                $resUsers[0] = true;
+                $resUsers[1] = $users;
+                return $resUsers;
+            }else
+            {
+                $resUsers[0] = true;
+                $resUsers[1] = 'Conjunto vazio!';
+                return $resUsers;
+            }
+        } catch (PDOException $e)
+        {
+            $resUsers[0] = false;
+            $resUsers[1] = $e->getMessage();
+            return $resUsers;
+        }
+    }
+
+    public function listAllDenun()
+    {
+        try
+        {
+            $sql = "SELECT d.*, u.*, us.name AS nameD, us.profile AS profileD FROM tb_denunciation AS d INNER JOIN tb_user AS u ON d.tb_user_id = u.id INNER JOIN tb_user AS us ON d.tb_mods_userId = us.id ORDER BY status";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $denun = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(!empty($denun))
+            {
+                $resDenun[0] = true;
+                $resDenun[1] = $denun;
+                return $resDenun;
+            }else
+            {
+                $resDenun[0] = true;
+                $resDenun[1] = 'Conjunto vazio!';
+                return $resDenun;
+            }
+        } catch (PDOException $e)
+        {
+            $resDenun[0] = false;
+            $resDenun[1] = $e->getMessage();
+            return $resDenun;
+        }
+    }
 }

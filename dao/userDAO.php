@@ -159,11 +159,11 @@ class UserDAO{
 
     public function deleteUser($id)
     {
-        try 
+        try
         {
             $sql = "DELETE FROM tb_user WHERE id = $id";
             $stmt = $this->pdo->prepare($sql);
-            return $stmt->execute();            
+            return $stmt->execute();
         } catch (PDOException $e)
         {
             return false;

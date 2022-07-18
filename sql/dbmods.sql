@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Jul-2022 às 02:02
+-- Tempo de geração: 18-Jul-2022 às 17:00
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -64,16 +64,19 @@ CREATE TABLE `tb_denunciation` (
   `tb_mods_modId` int(11) NOT NULL,
   `tb_mods_userId` int(11) NOT NULL,
   `titleD` varchar(255) NOT NULL,
-  `descD` text NOT NULL
+  `descD` text NOT NULL,
+  `status` enum('on','off') NOT NULL DEFAULT 'on'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tb_denunciation`
 --
 
-INSERT INTO `tb_denunciation` (`tb_user_id`, `tb_mods_modId`, `tb_mods_userId`, `titleD`, `descD`) VALUES
-(1, 10, 1, 'testef ', 'fdadfe efef ewff'),
-(2, 10, 1, 'teste', 'drfefefeihsi feihfuedeef efheudhfd\r\n');
+INSERT INTO `tb_denunciation` (`tb_user_id`, `tb_mods_modId`, `tb_mods_userId`, `titleD`, `descD`, `status`) VALUES
+(11, 10, 1, 'Muito ruim', 'Esse é apenas um teste pra testar :::)', 'on'),
+(12, 5, 1, 'titulo teste', 'teste teste test ', 'on'),
+(12, 10, 1, 'alooo', 'sera se vai', 'on'),
+(12, 13, 1, 'testando', 'testemenostexto', 'on');
 
 -- --------------------------------------------------------
 
@@ -102,10 +105,9 @@ CREATE TABLE `tb_mods` (
 INSERT INTO `tb_mods` (`modId`, `titleMod`, `bannerMod`, `descMod`, `sizeMod`, `youtubeMod`, `downloadMod`, `typeMod`, `countDownloads`, `registrationDate`, `userId`) VALUES
 (5, 'motinhaa', '../image/banner/62c6154087225.jpg', 'essa moto é incrível, mas eu perdi ela', '444kb', 'só n o yt', 'nem teim', 'gta', 331, '2022-07-05 11:58:18', 1),
 (8, 'E agora?', '../image/banner/62c84c4896e64.jpg', 'esse dia foi mai louco ainda!!', '3kb', 'youtubeee', 'mediafireeee', 'cleo', 0, '2022-07-05 12:43:13', 1),
-(10, 'BANIDO', '../image/banner/62c615fc17a89.jpg', 'eitaaaaaa, nunca mais jogo nesse server ._.', '1kb', 'https://linkebr.com/member/dashboard', 'https://stackoverflow.com/questions/33080226/how-to-open-a-url-using-php', 'gta', 500, '2022-07-06 18:15:28', 1),
-(11, 'F rapaziada', '../image/banner/62c616c3f1e05.png', 'isso foi covardia', '350gb', 'nem precisa', 'tambem não precisa', 'grafico', 0, '2022-07-06 20:12:03', 2),
-(12, 'RP online, mas todo rp é online ._.', '../image/banner/62c8478be0fa0.jpg', 'Eu sei, tenho alguns títulos meio estranhos, mas não necessários pra ganhar um bom engajamento', '3333gb', 'https://www.youtube.com/', 'https://www.mediafire.com/', 'grafico', 0, '2022-07-08 12:04:43', 1),
-(13, 'Essa live foi incrível kkkjk', '../image/banner/62c847d289cf5.png', 'arranjei um trampo, perdi ele, fiquei milionário, perdi tudo e agora eu volto com tudo.', '20gb', 'https://www.youtube.com/', 'https://www.mediafire.com/', 'gta', 0, '2022-07-08 12:05:54', 1);
+(10, 'BANIDO', '../image/banner/62c615fc17a89.jpg', 'eitaaaaaa, nunca mais jogo nesse server ._.', '1kb', 'https://linkebr.com/member/dashboard', 'https://stackoverflow.com/questions/33080226/how-to-open-a-url-using-php', 'gta', 501, '2022-07-06 18:15:28', 1),
+(12, 'RP online, mas todo rp é online ._.', '../image/banner/62c8478be0fa0.jpg', 'Eu sei, tenho alguns títulos meio estranhos, mas não necessários pra ganhar um bom engajamento', '3333gb', 'https://www.youtube.com/', 'https://www.mediafire.com/', 'grafico', 1, '2022-07-08 12:04:43', 1),
+(13, 'Essa live foi incrível kkkjk', '../image/banner/62c847d289cf5.png', 'arranjei um trampo, perdi ele, fiquei milionário, perdi tudo e agora eu volto com tudo.', '20gb', 'https://www.youtube.com/', 'https://www.mediafire.com/', 'gta', 1, '2022-07-08 12:05:54', 1);
 
 -- --------------------------------------------------------
 
@@ -129,8 +131,9 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`id`, `name`, `profile`, `password`, `recovery`, `level`, `registrationDate`) VALUES
 (1, 'maior', '../image/profile/62cad2f095e72.jpg', 'b95c988b121e7433c4da81c76b90a79b', 'maior', '4', '2022-07-05 10:39:42'),
-(2, 'marcos', '../image/profile/62caceab1fa8e.jpg', '14c879f3f5d8ed93a09f6090d77c2cc3', '3434', '5', '2022-07-05 14:16:18'),
-(8, 'teste', '../image/profile/62cc853a61cc0.jpg', '698dc19d489c4e4db73e28a713eab07b', 'teste', '1', '2022-07-11 17:16:58');
+(8, 'teste', '../image/profile/62cc853a61cc0.jpg', '698dc19d489c4e4db73e28a713eab07b', 'teste', '1', '2022-07-11 17:16:58'),
+(11, 'User', '../image/profile/62d489ef7ee2d.jpg', 'ee11cbb19052e40b07aac0ca060c23ee', 'User', '1', '2022-07-17 19:15:11'),
+(12, 'teste2', '../image/profile/62d48aabbe4e7.jpg', '38851536d87701d2191990e24a7f8d4e', 'teste2', '1', '2022-07-17 19:18:19');
 
 --
 -- Índices para tabelas despejadas
@@ -189,7 +192,7 @@ ALTER TABLE `tb_mods`
 -- AUTO_INCREMENT de tabela `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restrições para despejos de tabelas

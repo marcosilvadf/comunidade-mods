@@ -26,4 +26,30 @@ class DenunDAO{
         }
     }
 
+    public function deleteByModId($id)
+    {
+        try
+        {
+            $sql = "DELETE FROM tb_denunciation WHERE tb_mods_modId  = $id";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute();
+        } catch (PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    public function deleteByUserId($id)
+    {
+        try
+        {
+            $sql = "DELETE FROM tb_denunciation WHERE tb_mods_userId = $id OR tb_user_id = $id";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute();
+        } catch (PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
 }

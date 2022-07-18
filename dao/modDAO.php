@@ -138,4 +138,18 @@ class ModDAO{
             return false;
         }        
     }
+
+    public function addOneDow(ModDTO $modDTO)
+    {
+        try {
+            $sql = "UPDATE tb_mods SET countDownloads = ? WHERE modId = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $modDTO->getCount());
+            $stmt->bindValue(2, $modDTO->getId());
+            return $stmt->execute();
+        } catch(PDOException $e)
+        {
+            return false;
+        }        
+    }
 }

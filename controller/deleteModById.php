@@ -1,11 +1,15 @@
 <?php
 require_once '../dao/modDAO.php';
+require_once '../dao/denunDAO.php';
 
 $modId = $_GET['modId'];
 
 $modDAO = new ModDAO();
+$denDAO = new DenunDAO();
 
 $bannerMod = $modDAO->getModById($modId);
+
+$denDAO->deleteByModId($modId);
 
 if($modDAO->deleteModById($modId))
 {

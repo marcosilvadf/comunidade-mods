@@ -84,9 +84,9 @@ if(empty($_SESSION['adminon']))
         function listMods(){
             divAll.classList.add('active')
             tr = '<tr><th>Imagem</th><th>Título</th><th>Down<wbr>loads</th><th>Tipo</th><th>Usuário</th></tr>'
-            listAll('controllerA.php', (data) => {
+            listAll('controllerM.php', (data) => {
                 console.log(data)
-                data.forEach(areaMods)    
+                data.forEach(areaMods)
             })
         }
 
@@ -96,7 +96,7 @@ if(empty($_SESSION['adminon']))
                         <td>${element['titleMod']}</td>
                         <td>${element['countDownloads']}</td>
                         <td>${element['typeMod']}</td>
-                        <td><img src='${element['profile']}'> <span>${element['name']}</span></td>
+                        <td class='user'><img src='${element['profile']}'> <span>${element['name']}</span></td>
                     </tr>
                     <tr>
                         <td colspan='5' style='border-bottom: 1px solid white;'><a href='${element['modId']}'>Deletar</a></td>
@@ -108,10 +108,59 @@ if(empty($_SESSION['adminon']))
 
         function listUsers(){
             divAll.classList.add('active')
+            tr = '<tr><th>Perfil</th><th>Nome</th><th>Nível</th></tr>'
+            listAll('controllerU.php', (data) => {
+                console.log(data)
+                data.forEach(areaUsers)
+            })
+        }
+
+        function areaUsers(element, index, data){
+            tr += `<tr>
+                        <td><img src='${element['profile']}'></td>
+                        <td>${element['name']}</td>
+                        <td>${element['level']}</td>                        
+                    </tr>
+                    <tr>
+                        <td colspan='3' style='border-bottom: 1px solid white;'><a href='${element['id']}'>Deletar</a></td>
+                    </tr>`
+            if(index == data.length -1){
+                table.innerHTML = tr
+            }
         }
 
         function listDenun(){
+            tr = '<tr><th>Denunciou</th><th>Denunciado</th><th>Título</th><th>Descrição</th></tr>'
             divAll.classList.add('active')
+            listAll('controllerD.php', (data) => {
+                data.forEach(areaDenun)
+            })
+        }
+
+        function areaDenun(element, index, data){
+            let checkedT = ''
+            if(element['status'] == 'on'){
+                checkedT = 'checked'
+            }
+            tr += `<tr>
+                        <td><span class='user'><img src='${element['profile']}'> <span>${element['name']}</span></span></td>
+                        <td><span class='user'><img src='${element['profileD']}'> <span>${element['nameD']}</span></span></td>
+                        <td>${element['titleD']}</td>
+                        <td>${element['descD']}</td>
+                    </tr>
+                    <tr>
+                        <td colspan='3' style='border-bottom: 1px solid white;'><a href='${element['id']}'>Deletar</a></td>
+                        <td style='border-bottom: 1px solid white;'><input type="checkbox" name="" id="actived${element['id']}${element['tb_mods_userId']}${element['tb_mods_modId']}" ${checkedT} onclick='teste(${element['id']}${element['tb_mods_userId']}${element['tb_mods_modId']}, ${element['id']}, ${element['tb_mods_userId']}, ${element['tb_mods_modId']})'></td>
+                    </tr>`
+            if(index < data.length){
+                table.innerHTML = tr
+            }
+        }
+
+        function teste(id, userId, modUserId, modId){
+            let actived = document.querySelector(`#actived${id}`)
+            alert(actived.checked)
+            console.log(userId, modUserId, modId)
         }
     </script>
 </body>

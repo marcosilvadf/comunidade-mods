@@ -65,7 +65,7 @@
     $_SESSION['youtubeMod'] = $mod['youtubeMod'];
         if(!array_key_exists("usermodlevel", $_COOKIE))
         {
-            $userLevel = 0;
+            $userLevel = 0; 
         }else
         {
             $userLevel = $_COOKIE['usermodlevel'];
@@ -96,8 +96,8 @@
                     <?php
                     if($mod['level'] >= 4 || $userLevel >= 4)
                     {
-                        echo "<a href='$mod[youtubeMod]'>Ver vídeo</a>";
-                        echo "<a href='$mod[downloadMod]'>Baixar</a>";
+                        echo "<a href='../controller/openVideo.php'>Ver vídeo</a>";
+                        echo "<a href='../controller/downloadMod.php'>Baixar</a>";
                     }else
                     {
                         echo "<a href='../controller/openVideo.php'>Ver vídeo</a>";
@@ -112,5 +112,11 @@
     <footer>
         <div id="nav" style="display: none;"></div>
     </footer>
+
+    <script>
+        function onlink(event){
+            
+        }
+    </script>
 </body>
 </html>
