@@ -485,6 +485,7 @@ div.line
 
 .login img
 {
+    border: 1px solid currentColor;
     cursor: pointer;
     transition: .4s;
 }

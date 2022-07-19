@@ -12,14 +12,25 @@ $cookie = new Cookie();
 $denDAO = new DenunDAO();
 
 $denDAO->deleteByUserId($id);
+$mods = $modDAO->listModsById($id);
+$user = $userDAO->findById($id);
 
-if(!empty($modDAO->listModsById($id)))
+if(!empty($mods))
 {
+
+    foreach ($mods as $mod)
+    {
+        unlink($mod['bannerMod']);
+        echo $mod['bannerMod'];
+    }
+
     if($modDAO->deleteModByUser($id))
     {
         if($userDAO->deleteUser($id))
         {
             $cookie->logout();
+            unlink($user['profile']);
+            echo "<script>sessionStorage.setItem('sqlRes', 'true')</script>";
             header("Location: ../index.php");
         }
     }
@@ -28,6 +39,8 @@ if(!empty($modDAO->listModsById($id)))
     if($userDAO->deleteUser($id))
         {
             $cookie->logout();
+            unlink($user['profile']);
+            echo "<script>sessionStorage.setItem('sqlRes', 'true')</script>";
             header("Location: ../index.php");
         }
 }

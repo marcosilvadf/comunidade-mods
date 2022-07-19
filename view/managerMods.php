@@ -196,7 +196,6 @@
                 down.value = mod['downloadMod']
                 modal.classList.add('active')
                 imgMod.src = mod['bannerMod']
-                console.log(titulo)
                 clearInterval(timer)
                 iframe.parentNode.removeChild(iframe)
                 window.sessionStorage.removeItem('getModId')
@@ -208,7 +207,6 @@
             document.documentElement.style.overflowY = 'auto'
             let closeModal = document.querySelector('#closeModal')
             modal.classList.remove('active')
-            drop.parentNode.removeChild(drop)
         }
 
         function dropMod(modId){

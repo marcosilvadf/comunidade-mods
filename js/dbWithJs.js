@@ -15,7 +15,6 @@ function listAll(link, callback) {
         clearInterval(timer)
         divNav.innerHTML = ''
         let data = JSON.parse(sessionStorage.getItem('sqlRes'))
-        console.log(data)
         sessionStorage.removeItem('sqlRes')
         callback(data)
         }

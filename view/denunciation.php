@@ -72,7 +72,7 @@ if(empty($_COOKIE['idmods']))
             <input type="text" name="titleD" id="titleD" placeholder="Digite um título para a sua denúncia:" maxlength="50">
 
             <label for="descD">Descrição:</label>
-            <textarea name="descD" id="descD" cols="30" rows="10" placeholder="Descrição: digite detalhes para sua denúncia ser atendida, coloque links certeza facilitarão. Lembre-se que sua conta pode ser banida se não houver comprovação ou que sua denúncia foi incorreta!" maxlength="400"></textarea>
+            <textarea name="descD" id="descD" cols="30" rows="10" placeholder="Descrição: digite detalhes para sua denúncia ser atendida, coloque links certeza facilitarão. Lembre-se que sua conta pode ser banida se não houver comprovação ou que sua denúncia foi incorreta!" maxlength="300"></textarea>
 
             <input type="submit" value="Enviar denúncia">
         </form>

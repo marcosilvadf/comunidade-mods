@@ -85,21 +85,22 @@ if(empty($_SESSION['adminon']))
             divAll.classList.add('active')
             tr = '<tr><th>Imagem</th><th>Título</th><th>Down<wbr>loads</th><th>Tipo</th><th>Usuário</th></tr>'
             listAll('controllerM.php', (data) => {
-                console.log(data)
-                data.forEach(areaMods)
+                if(Array.isArray(data)){
+                    data.forEach(areaMods)
+                }
             })
         }
 
         function areaMods(element, index, data){
-            tr += `<tr>
+            tr += `<tr class='mod${element['modId']}'>
                         <td><img src='${element['bannerMod']}'></td>
                         <td>${element['titleMod']}</td>
                         <td>${element['countDownloads']}</td>
                         <td>${element['typeMod']}</td>
                         <td class='user'><img src='${element['profile']}'> <span>${element['name']}</span></td>
                     </tr>
-                    <tr>
-                        <td colspan='5' style='border-bottom: 1px solid white;'><a href='${element['modId']}'>Deletar</a></td>
+                    <tr class='mod${element['modId']}'>
+                        <td colspan='5' style='border-bottom: 1px solid white;'><a href='${element['modId']}' onclick='deleteMod(event, ${element['modId']})'>Deletar</a></td>
                     </tr>`
             if(index == data.length -1){
                 table.innerHTML = tr
@@ -110,19 +111,20 @@ if(empty($_SESSION['adminon']))
             divAll.classList.add('active')
             tr = '<tr><th>Perfil</th><th>Nome</th><th>Nível</th></tr>'
             listAll('controllerU.php', (data) => {
-                console.log(data)
-                data.forEach(areaUsers)
+                if(Array.isArray(data)){
+                    data.forEach(areaUsers)
+                }
             })
         }
 
         function areaUsers(element, index, data){
-            tr += `<tr>
+            tr += `<tr class='user${element['id']}'>
                         <td><img src='${element['profile']}'></td>
                         <td>${element['name']}</td>
                         <td>${element['level']}</td>                        
                     </tr>
-                    <tr>
-                        <td colspan='3' style='border-bottom: 1px solid white;'><a href='${element['id']}'>Deletar</a></td>
+                    <tr class='user${element['id']}'>
+                        <td colspan='3' style='border-bottom: 1px solid white;'><a href='${element['id']}' onclick='deleteUser(event, ${element['id']})'>Deletar</a></td>
                     </tr>`
             if(index == data.length -1){
                 table.innerHTML = tr
@@ -133,7 +135,9 @@ if(empty($_SESSION['adminon']))
             tr = '<tr><th>Denunciou</th><th>Denunciado</th><th>Título</th><th>Descrição</th></tr>'
             divAll.classList.add('active')
             listAll('controllerD.php', (data) => {
-                data.forEach(areaDenun)
+                if(Array.isArray(data)){
+                    data.forEach(areaDenun)
+                }
             })
         }
 
@@ -149,18 +153,45 @@ if(empty($_SESSION['adminon']))
                         <td>${element['descD']}</td>
                     </tr>
                     <tr>
-                        <td colspan='3' style='border-bottom: 1px solid white;'><a href='${element['id']}'>Deletar</a></td>
-                        <td style='border-bottom: 1px solid white;'><input type="checkbox" name="" id="actived${element['id']}${element['tb_mods_userId']}${element['tb_mods_modId']}" ${checkedT} onclick='teste(${element['id']}${element['tb_mods_userId']}${element['tb_mods_modId']}, ${element['id']}, ${element['tb_mods_userId']}, ${element['tb_mods_modId']})'></td>
+                        <td colspan='3' style='border-bottom: 1px solid white;'></td>
+                        <td style='border-bottom: 1px solid white;'><input type="checkbox" name="" id="actived${element['id']}${element['tb_mods_userId']}${element['tb_mods_modId']}" ${checkedT} onclick='toggleStatus(${element['id']}${element['tb_mods_userId']}${element['tb_mods_modId']}, ${element['id']}, ${element['tb_mods_userId']}, ${element['tb_mods_modId']})'></td>
                     </tr>`
             if(index < data.length){
                 table.innerHTML = tr
             }
         }
 
-        function teste(id, userId, modUserId, modId){
-            let actived = document.querySelector(`#actived${id}`)
-            alert(actived.checked)
-            console.log(userId, modUserId, modId)
+        function toggleStatus(id, userId, modUserId, modId){
+            let actived = document.querySelector(`#actived${id}`).checked
+            let toggle = ''
+            if(actived){
+                toggle = 'on'
+            }else{
+                toggle = 'off'
+            }
+            
+            listAll(`controllerDchecked.php?userId=${userId}&modUserId=${modUserId}&modId=${modId}&value=${toggle}`, (data) => {             
+            })
+        }
+
+        function deleteUser(event, id){
+            let userGray = document.querySelector(`.user${id}`)
+            event.preventDefault()
+            userGray.style.display = 'none'
+            if(confirm('Deseja deletar?')){
+                listAll(`../controller/deleteUser.php?imd=${id}`, (data) => {
+                })
+            }
+        }
+
+        function deleteMod(event, id){
+            let modGray = document.querySelector(`.mod${id}`)
+            event.preventDefault()
+            if(confirm('Deseja deletar?')){
+                modGray.style.display = 'none'
+                listAll(`../controller/deleteModById.php?modId=${id}&vlt=1`, (data) => {
+                })
+            }            
         }
     </script>
 </body>

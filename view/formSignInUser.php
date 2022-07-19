@@ -76,7 +76,7 @@ session_start();
 
                 <div class="showHidePass">
                     <span class="eye"><i class="fa-solid fa-eye"></i></span>
-                    <input type="password" name="pass" id="confirmPass" class="error" maxlength="10" placeholder="Confirmar senha:">
+                    <input type="password" name="pass" id="confirmPass" class="error" maxlength="10" placeholder="Confirmar senha:" required>
                 </div>
 
                 <div class="checkbox">                    

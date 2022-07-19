@@ -47,7 +47,7 @@ if(empty($_COOKIE['idmods']))
     <main>
         <div class="form">
             <h4 class="formTitle">Adicionar mod</h4>
-            <form action="../controller/addModController.php" method="post" enctype="multipart/form-data" autocomplete="off"> 
+            <form action="../controller/addModController.php" method="post" enctype="multipart/form-data" autocomplete="off" onsubmit="formSend(event)"> 
                 <input type="hidden" name="idUser" value="<?=$_COOKIE['idmods']?>">
 
                 <div class="modImage">
@@ -60,13 +60,13 @@ if(empty($_COOKIE['idmods']))
                     <input type="file" name="modImage" id="modImage">
                 </div>
 
-                <input type="text" name="titulo" id="titulo" placeholder="Título:" maxlength="20">
+                <input type="text" name="titulo" id="titulo" placeholder="Título:" maxlength="20" required>
 
-                <textarea name="descMod" id="descMod" cols="30" rows="10" placeholder="Descrição do mod:" maxlength="200"></textarea>
+                <textarea name="descMod" id="descMod" cols="30" rows="10" placeholder="Descrição do mod:" maxlength="150" required></textarea>
 
                 <label for="nTam" id="lTam">Tamanho:</label>
                 <div id="tam">
-                <input type="number" name="nTam" id="nTam" placeholder="Tamanho:">
+                <input type="number" name="nTam" id="nTam" placeholder="Tamanho:" min="0" required>
                 <select name="tTam" id="tTam">
                     <option value="kb">KB</option>
                     <option value="mb" selected>MB</option>
@@ -82,9 +82,9 @@ if(empty($_COOKIE['idmods']))
                     <option value="veiculo">Veículo</option>
                 </select>
 
-                <input type="text" name="video" id="video" placeholder="Link do vídeo:">
+                <input type="text" name="video" id="video" placeholder="Link do vídeo:" required>
 
-                <input type="text" name="download" id="down" placeholder="Link de download:">
+                <input type="text" name="download" id="down" placeholder="Link de download:" required>
         
                 <input type="submit" value="enviar">
             </form>
@@ -102,7 +102,15 @@ if(empty($_COOKIE['idmods']))
                 clearInterval(timer)                
             }, 100)
             }
-        }        
+        }
+
+        function formSend(event){
+            let file = document.querySelector('#modImage')
+            if(file.files[0] == null){
+                event.preventDefault()
+                alert('Você precisa adicionar uma thumb a postagem!')
+            }
+        }
     </script>
 </body>
 </html>

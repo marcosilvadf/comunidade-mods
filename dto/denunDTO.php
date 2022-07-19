@@ -6,6 +6,7 @@ class DenunDTO{
     private $modId;
     private $title;
     private $desc;
+    private $status;
     
 
     public function getUserId()
@@ -60,6 +61,17 @@ class DenunDTO{
     public function setDesc($desc)
     {
         $this->desc = $desc;
+
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
     }
 }

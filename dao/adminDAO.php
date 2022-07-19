@@ -109,4 +109,24 @@ class AdminDAO{
             return $resDenun;
         }
     }
+
+    public function toggleStatus(DenunDTO $denunDTO)
+    {
+        try
+        {
+            $sql = "UPDATE tb_denunciation SET status = ? WHERE tb_denunciation.tb_user_id = ? AND tb_denunciation.tb_mods_modId = ? AND tb_denunciation.tb_mods_userId = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(1, $denunDTO->getStatus());
+            $stmt->bindValue(2, $denunDTO->getUserId());
+            $stmt->bindValue(3, $denunDTO->getModId());
+            $stmt->bindValue(4, $denunDTO->getUserModId());
+            $resAlter[0] = $stmt->execute();
+            return $resAlter;
+        } catch (PDOException $e)
+        {
+            $resAlter[0] = false;
+            $resAlter[1] = $e->getMessage();
+            return $resAlter;
+        }
+    }
 }
